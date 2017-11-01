@@ -1,0 +1,28 @@
+[debug] [2017-11-01T01:13:21.284Z] ----------------------------------------------------------------------
+[debug] [2017-11-01T01:13:21.287Z] Command:       /usr/local/bin/node /usr/local/bin/firebase serve
+[debug] [2017-11-01T01:13:21.287Z] CLI Version:   3.13.1
+[debug] [2017-11-01T01:13:21.287Z] Platform:      darwin
+[debug] [2017-11-01T01:13:21.287Z] Node Version:  v6.10.2
+[debug] [2017-11-01T01:13:21.288Z] Time:          Tue Oct 31 2017 18:13:21 GMT-0700 (PDT)
+[debug] [2017-11-01T01:13:21.288Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2017-11-01T01:13:21.306Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2017-11-01T01:13:21.306Z] > authorizing via signed-in user
+[debug] [2017-11-01T01:13:21.309Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/famwe-b672b  
+ Tue Oct 31 2017 18:13:21 GMT-0700 (PDT)
+[debug] [2017-11-01T01:13:21.822Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-01T01:13:21.824Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/famwe-b672b/tokens  
+ Tue Oct 31 2017 18:13:21 GMT-0700 (PDT)
+[debug] [2017-11-01T01:13:23.551Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from '/Users/Vanna/FAMwe'...
+[info] 
+[debug] [2017-11-01T01:13:23.554Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/famwe-b672b  
+ Tue Oct 31 2017 18:13:23 GMT-0700 (PDT)
+[debug] [2017-11-01T01:13:24.213Z] <<< HTTP RESPONSE 200
+[debug] [2017-11-01T01:13:24.214Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/232395217561/clients/_:getWebAppConfig  
+ Tue Oct 31 2017 18:13:24 GMT-0700 (PDT)
+[debug] [2017-11-01T01:13:25.078Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] ✔  hosting: Local server: http://localhost:5000
+

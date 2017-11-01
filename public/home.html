@@ -1,49 +1,180 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Home</title>
-    </head>
-    <body>
-      <div class="title">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Home</title>
+    <style>
+        html, body {
+            background-color: #f8f8ff;
+            font-family: Calibri, sans-serif;
+            margin: 0 auto;
+        }
+        .navbar {
+            /*width: 100%;*/
+            padding: 15px 10px 15px 10px;
+            color: #ee6e73;
+            font-size: 30px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .contactToggle {
+            position: fixed;
+            display:flex;
+            flex-direction: row;
+            bottom: 0;
+            width: 100%;
+        }
+
+        .contactToggle button {
+            border: none;
+            width: 50%;
+            background-color: #ee6e73;
+            color: white;
+            font-family: sans-serif;
+            padding: 27px 0 27px 0;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+            font-size: 30px;
+        }
+
+
+        .contacts {
+            /*width: 100%;*/
+            display: flex;
+            flex-direction: column;
+            overflow-y: scroll;
+            max-height:500px;
+        }
+
+        .row {
+            /*display: flex;
+            flex-direction: row;*/
+            padding-bottom: 20px;
+        }
+
+        .contacts div a img {
+            border-radius: 50%;
+            width: 125px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        .item1 {
+            float: left;
+            margin-left: 35px;
+            text-align: center;
+        }
+
+        .item2 {
+            float: right;
+            margin-right: 35px;
+            text-align: center;
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <!--<div class="title">
         <h1>FAMwe</h1>
-      </div>
-        <!-- some kind of app bar -->
-        <div>
-            <a href="addcontact.html"><img src="" alt="Add Contact"></a>
-            <a href="settings.html"><img src="" alt="Settings"></a>
+      </div>-->
+    <!-- some kind of app bar -->
+
+    <div class="navbar">
+        <span style="margin-left:35px">FAMwe</span>
+        <a style="" href="settings.html">
+            <img style="width:35px" src="resources/Settings.png" alt="">
+        </a>
+    </div>
+
+    <!-- container for family contacts -->
+    <div style="margin-top:10px" class="contacts">
+        <div class="row">
+            <div class="item1">
+                <a href="contactprofile.html">
+                    <img src="resources/AddButton.png" alt="Fam1">
+                </a>
+                <br>
+                <span>Add</span>
+            </div>
+            <div class="item2">
+                <a href="contactprofile.html">
+                    <img src="resources/Trump.png" alt="Fam1">
+                </a>
+                <br>
+                <span>Trumpie Poo</span>
+            </div>
         </div>
 
-        <!-- container for family contacts -->
-        <div>
-            <div>
-                <a href="contactprofile.html"><img src="" alt="Fam1"></a><br>
-                <span>Name1</span>
+        <div class="row">
+            <div class="item1">
+                <a href="contactprofile.html">
+                    <img src="resources/Obama.png" alt="Fam1">
+                </a>
+                <br>
+                <span>Brobama</span>
             </div>
-            <div>
-                <a href="contactprofile.html"><img src="" alt="Fam2"></a><br>
-                <span>Name2</span>
+            <div class="item2">
+                <a href="contactprofile.html">
+                    <img src="resources/Bush.png" alt="Fam1">
+                </a>
+                <br>
+                <span>Georgie</span>
             </div>
-            <div>
-                <a href="contactprofile.html"><img src="" alt="Fam3"></a><br>
-                <span>Name3</span>
-            </div>
-            <div>
-                <a href="friendprofile.html"><img src="" alt="Fam4"></a><br>
-                <span>Name4</span>
-            </div>
-
-
         </div>
 
-        <button>FAMILY</button>
-        <button>FRIENDS</button>
+        <div class="row">
+            <div class="item1">
+                <a href="contactprofile.html">
+                    <img src="resources/Kevin Malone.png" alt="Fam1">
+                </a>
+                <br>
+                <span>Kevin Malone</span>
+            </div>
+            <div class="item2">
+                <a href="contactprofile.html">
+                    <img src="resources/Bill Clinton.png" alt="Fam1">
+                </a>
+                <br>
+                <span>Billie</span>
+            </div>
+        </div>
 
-        <script>
+        <div class="row">
+                <div class="item1">
+                    <a href="contactprofile.html">
+                        <img src="https://www.what-dog.net/Images/faces2/scroll0015.jpg" alt="Fam1">
+                    </a>
+                    <br>
+                    <span>Name6</span>
+                </div>
+                <div class="item2">
+                    <a href="contactprofile.html">
+                        <img src="https://www.what-dog.net/Images/faces2/scroll0015.jpg" alt="Fam1">
+                    </a>
+                    <br>
+                    <span>Name7</span>
+                </div>
+            </div>
 
-        </script>
-    </body>
+
+    </div>
+    <div class="contactToggle">
+        <button style="background-color:#ffb6c1">FAMILY</button>
+        <button style="background-color: #fff8e7; color: #ffb6c1">FRIENDS</button>
+    </div>
+
+
+    <script>
+
+    </script>
+</body>
 
 </html>
