@@ -39,6 +39,8 @@
         }
 
         .row {
+            /*display: flex;
+            flex-direction: row;*/
             padding-bottom: 20px;
         }
 
@@ -81,7 +83,7 @@
     </div>
 
     <!-- container for family contacts -->
-    <div id="family" style="margin-top:10px" class="contacts">
+    <div style="margin-top:10px" class="contacts">
         <div class="row">
             <div class="item1">
                 <a href="addcontact.html">
@@ -91,7 +93,7 @@
                 <span>Add</span>
             </div>
             <div class="item2">
-                <a href="resources/Family/Dad.html">
+                <a href="contactprofile.html">
                     <img src="resources/Family/Dad.png" alt="Fam1">
                 </a>
                 <br>
@@ -101,15 +103,15 @@
 
         <div class="row">
             <div class="item1">
-                <a href="resources/Family/Son.html">
-                    <img src="resources/Family/Son.png" alt="Fam1">
+                <a href="contactprofile.html">
+                    <img src="resources/Family/Brother.png" alt="Fam1">
                 </a>
                 <br>
                 <span>Son</span>
             </div>
             <div class="item2">
-                <a href="resources/Family/Daughter.html">
-                    <img src="resources/Family/Daughter.jpg" alt="Fam1">
+                <a href="contactprofile.html">
+                    <img src="resources/Family/Sister.jpg" alt="Fam1">
                 </a>
                 <br>
                 <span>Daughter</span>
@@ -118,14 +120,14 @@
 
         <div class="row">
             <div class="item1">
-                <a href="resources/Family/UncleTim.html">
+                <a href="contactprofile.html">
                     <img src="resources/Family/UncleTim.png" alt="Fam1">
                 </a>
                 <br>
-                <span>Uncle Timmie</span>
+                <span>Uncle Tim</span>
             </div>
             <div class="item2">
-                <a href="resources/Family/Aunt Vanna.html">
+                <a href="contactprofile.html">
                     <img src="resources/Family/Aunt Vanna.png" alt="Fam1">
                 </a>
                 <br>
@@ -135,14 +137,14 @@
 
         <div class="row">
                 <div class="item1">
-                    <a href="resources/Family/Lindy.html">
+                    <a href="contactprofile.html">
                         <img src="resources/Family/Lindy.png" alt="Fam1">
                     </a>
                     <br>
                     <span>Niece Lindy</span>
                 </div>
                 <div class="item2">
-                    <a href="resources/Family/Kenny.html">
+                    <a href="contactprofile.html">
                         <img src="resources/Family/Kenny.png" alt="Fam1">
                     </a>
                     <br>
@@ -152,75 +154,14 @@
 
 
     </div>
-
-    <!-- Container of friends -->
-    <div id="friends" style="margin-top:10px; display:none" class="contacts">
-        <div class="row">
-            <div class="item1">
-                <a href="addcontact.html">
-                    <img src="resources/AddButton.png" alt="Fam1">
-                </a>
-                <br>
-                <span>Add</span>
-            </div>
-            <div class="item2">
-                <a href="resources/Friends/马化腾.html">
-                    <img src="resources/Friends/马化腾.jpg" alt="Fam1">
-                </a>
-                <br>
-                <span>马化腾</span>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="item1">
-                <a href="resources/Friends/王健林.html">
-                    <img src="resources/Friends/王健林.jpg" alt="Fam1">
-                </a>
-                <br>
-                <span>王健林</span>
-            </div>
-            <div class="item2">
-                <a href="resources/Friends/马云.html">
-                    <img src="resources/Friends/马云.jpg" alt="Fam1">
-                </a>
-                <br>
-                <span>马云</span>
-            </div>
-        </div>
-    </div>
-
     <div class="contactToggle">
-        <button id="familyButton" style="background-color:#ffb6c1" onclick="toggleFamily()">FAMILY</button>
-        <button id= "friendButton" style="background-color:#fff8e7; color: #ffb6c1" onclick="toggleFriends()">FRIENDS</button>
+        <button style="background-color:#ffb6c1">FAMILY</button>
+        <button style="background-color: #fff8e7; color: #ffb6c1">FRIENDS</button>
     </div>
 
 
     <script>
 
-        function toggleFamily() {
-          document.querySelector('#family').style.display = "flex";
-          document.querySelector('#friends').style.display = "none";
-          document.querySelector('#family').scrollTop=0;
-          colorFamily();
-        }
-
-        function toggleFriends() {
-          document.querySelector('#friends').style.display = "flex";
-          document.querySelector('#family').style.display = "none";
-          document.querySelector('#friends').scrollTop=0;
-          colorFriends();
-        }
-
-        function colorFriends() {
-          document.querySelector('#familyButton').style="background-color:#fff8e7; color: #ffb6c1";
-          document.querySelector('#friendButton').style="background-color:#ffb6c1; color: white";
-        }
-
-        function colorFamily() {
-          document.querySelector('#familyButton').style="background-color:#ffb6c1; color: white";
-          document.querySelector('#friendButton').style="background-color:#fff8e7; color: #ffb6c1";
-        }
     </script>
 </body>
 

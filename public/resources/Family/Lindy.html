@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="style.css" type="text/css">
+        <title>Friend's Profile</title>
+
+        <style>
+
+          .icons img {
+            border-radius:50%;
+            width:125px;
+          }
+
+          .profile img{
+            border-radius: 50%;
+            width:50px;
+          }
+
+          .navbar {
+            height: 50px;
+            width: 50px;
+          }
+
+          .navbar img{
+            border-radius: 50%;
+            width:50px;
+            float: left;
+
+          }
+
+          .profile {
+              text-align: center;
+              margin-top:-10px;
+
+          }
+
+          .profile .button{
+            border-radius: 50%;
+            width: 25px;
+            z-index: 10;
+            margin-top: -85px;
+            margin-left: 50px;
+            position:absolute;
+          }
+
+          .profile .picture{
+            border-radius: 50%;
+            width: 200px;
+            margin-right: 50px;
+          }
+
+          .left{
+            float: left;
+            margin-top: 20px;
+            margin-left: 35px;
+          }
+
+          .right{
+            float: right;
+            margin-top: 20px;
+            margin-right: 35px;
+          }
+        </style>
+    </head>
+    <body>
+        <div class="navbar">
+            <span></span>
+            <a href="../../home.html"><img src="../BackButton.png" alt="Back"></a>
+        </div>
+
+        <div class="profile">
+            <img class="picture" src="Lindy.png">
+            <br>
+            <span>Lindy</span>
+            <br>
+            <a class="button" href="Settings/Lindy Settings.html"><img src="../Settings.png" alt="Edit Profile"></a>
+        </div>
+
+
+        <div class="icons">
+          <div class="left">
+            <a href="call.html"><img src="../PhoneButton.png" alt="Phone"></a>
+            <br>
+            <a href="facetime.html"><img style="margin-top:20px;" src="../VideoCallButton.png" alt="FaceTime"></a>
+          </div>
+          <div class="right">
+            <a href="chat.html"><img src="../TextButton.png" alt="Chat"></a>
+            <br>
+            <a href="calendar.html"><img style="margin-top:20px" src="../Calendar.png" alt="Events"></a>
+          </div>
+        </div>
+
+
+
+    </body>
+
+</html>
