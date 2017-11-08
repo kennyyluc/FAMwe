@@ -4,10 +4,107 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="style.css" type="text/css">
         <title>Chat</title>
+        <style>
+        .navbar {
+            height: 50px;
+            width: 50px;
+          }
+
+          .navbar img{
+            border-radius: 50%;
+            width:50px;
+            float: left;
+
+          }
+        </style>
     </head>
     <body>
-        <a href="contactprofile.html">Back</a>
+        <div class="navbar">
+            <span></span>
+            <a href="contactprofile.html"><img src="resources/BackButton.png" alt="Back"></a>
+        </div>
+        <div class="chatboxes">
+            
+        </div>
+        <div class="below">
+            <img src="" alt="keyboard" onclick="toggleTyping()">
+
+        </div>
+        <button id="start" onclick="toggleRecording()">Toggle Recording</button>
+        <!--<button id="stop">Stop Recording</button>-->
+       
+
+        <script>
+            var context;
+            var recorder;
+            var stream;
+
+            function startRecording() {
+                navigator.getUserMedia({ audio: true }, function (audioStream) {
+                    stream = audioStream;
+                
+                    var input = context.createMediaStreamSource(audioStream);
+                    recorder = new Recorder(input);
+                    recorder && recorder.record();
+                }, function (e) {
+                    console.error(e);
+                });
+            }
+        
+            function stopRecording(callback, AudioFormat) {
+                recorder && recorder.stop();
+
+                stream.getAudioTracks()[0].stop();
+
+
+                if(typeof(callback) == "function"){
+                    recorder && recorder.exportWAV(function (blob) {
+                        callback(blob);
+                        recorder.clear();
+                    }, (AudioFormat || "audio/wav"));
+                }
+            }
+
+            function toggleRecording() {
+                console.log(window.localStorage.getItem('recording'));
+                if (window.localStorage.getItem('recording') == 'true') {
+                    window.localStorage.setItem('recording', false);
+                    stopRecording(function(AudioBLOB){
+                        var url = URL.createObjectURL(AudioBLOB);
+                        var au = document.createElement('audio');
+
+                        au.controls = true;
+                        au.src = url;
+                        document.querySelector('.chatboxes').appendChild(au);
+                    }, "audio/wav");
+                }
+                else {
+                    window.localStorage.setItem('recording', true);
+                    startRecording();
+                }
+            }
+
+            function toggleTyping() {
+
+            }
+            
+            window.onload = function() {
+                try {
+                    window.localStorage.setItem('recording', false);
+                    window.AudioContext = window.AudioContext || window.webkitAudioContext;
+                    context = new AudioContext();
+                    //navigator.mediaDevices.getUserMedia;
+                    navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia
+                    window.URL = window.URL || window.webkitURL;
+                }
+                catch(e) {
+                    alert('Web Audio API is not supported in this browser');
+                }
+            }
+        </script>
+        <script src="recorder.js"></script>
     </body>
 
 </html>
