@@ -304,7 +304,7 @@
 
         function goToContact(event) {
             event.preventDefault();
-            window.location = "/resources/Family/" + window.localStorage.getItem('chosenUser') + ".html";
+            window.location = "/resources/" + window.localStorage.getItem('type') + "/" + window.localStorage.getItem('chosenUser') + ".html";
         }
         window.onload = function () {
             try {

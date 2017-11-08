@@ -73,7 +73,7 @@
         </div>
 
         <div class="profile">
-            <img class="picture" src="Aunt Vanna.png">
+            <img class="picture" src="AuntVanna.png">
             <br>
             <span>Aunt Vanna</span>
             <br>
@@ -97,7 +97,8 @@
         <script>
             function prepareChat(event) {
               event.preventDefault();
-              window.localStorage.setItem('chosenUser', "Aunt Vanna");
+              window.localStorage.setItem('chosenUser', "AuntVanna");
+              window.localStorage.setItem('type', "Family");
               window.location = "../../chat.html";
             }
         </script>
