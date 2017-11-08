@@ -8,14 +8,15 @@
     <link rel="stylesheet" href="style.css" type="text/css">
     <title>Chat</title>
     <style>
-
         html {
             height: 100%;
         }
+
         body {
             height: 100%;
             background: rgb(255, 197, 205);
         }
+
         .navbar {
             height: 50px;
             width: 100%;
@@ -41,8 +42,8 @@
             display: flex;
             flex-direction: column;
             overflow-y: scroll;
-            max-height: 450px;
-            height: 450px;
+            max-height: 350px;
+            height: 350px;
             background: white;
         }
 
@@ -76,13 +77,19 @@
                 <div id="btnContainer" style="text-align:center">
                     <img id="recordBtn" style="width:150px" src="resources/Messenger/StartRec.png" id="start" alt="mic" onclick="toggleRecording()">
                 </div>
-                
-                
+
+
             </div>
             <div class="text" style="display:none">
-                <img style="width:25px; margin:15px;" src="resources/Messenger/Default.png" alt="mic" onclick="openAudio()">
-                <input id="message" type="text" placeholder="Text Message">
-                <img style="width:50px" id="sendText" src="resources/Messenger/Send.png" alt="Send" onclick='sendText()'>
+                <div style="width:25px">
+                    <img style="width:25px; margin:15px;" src="resources/Messenger/Default.png" alt="mic" onclick="openAudio()">
+                </div>
+                <div style="margin:20px 0 0 40px">
+                    <input id="message" type="text" id="theMsg" style="font-size:16px; width:200px" placeholder="Text Message" onkeydown="checkEnter(event)">
+                    <img style="width:60px; margin-left:20px" src="resources/Messenger/Send.png" alt="Send" onclick="sendText()">
+                </div>
+
+
             </div>
         </div>
     </div>
@@ -127,13 +134,13 @@
                 window.localStorage.setItem('recording', false);
                 stopRecording(function (AudioBLOB) {
                     var url = URL.createObjectURL(AudioBLOB);
-                    
+
                     var au = document.createElement('audio');
                     au.controls = true;
                     au.src = url;
                     au.style = "width:280px";
 
-                    
+
                     var container = document.querySelector('#btnContainer');
                     container.innerHTML = "";
                     container.appendChild(au);
@@ -150,16 +157,16 @@
                     cancelBtn.setAttribute('alt', "Cancel");
                     cancelBtn.style = "width:95px; margin:20px";
 
-                    sendBtn.onclick = function() {
+                    sendBtn.onclick = function () {
                         var div = document.createElement('div');
                         div.style = "float:right; text-align:right; margin-right: 20px";
                         div.appendChild(au);
-                        
+
                         var p = document.createElement('p');
                         p.textContent = "Sent ✔";
                         div.appendChild(p);
                         document.querySelector('.chatboxes').appendChild(div);
-                        
+
 
                         container.innerHTML = "";
                         var btn = document.createElement('img');
@@ -171,7 +178,7 @@
                         container.appendChild(btn);
                     }
 
-                    cancelBtn.onclick = function() {
+                    cancelBtn.onclick = function () {
                         container.innerHTML = "";
                         var btn = document.createElement('img');
                         btn.setAttribute('src', "resources/Messenger/StartRec.png");
@@ -185,7 +192,7 @@
                     container.appendChild(br);
                     container.appendChild(cancelBtn);
                     container.appendChild(sendBtn);
-                
+
                 }, "audio/wav");
             }
             else {
@@ -196,7 +203,9 @@
 
         function openText() {
             document.querySelector('.audio').style.display = "none";
-            document.querySelector('.text').style.display = "block";
+            document.querySelector('.text').style.display = "flex";
+            document.querySelector('.text').style.flexDirection = "row";
+
         }
 
         function openAudio() {
@@ -206,12 +215,19 @@
 
         function sendText() {
             var div = document.createElement('div');
-            div.style = "display: inline-block; padding: 10px; color: white; background: rgb(255,197,205); margin: 0 20px 2px 0; border-radius:20px";
-            div.textContent = document.querySelector('#message').value;
+            var innerDiv = document.createElement('div');
+            innerDiv.style = "display: inline-block; padding: 10px; color: white; background: rgb(255,197,205); margin: 0 20px 2px 0; border-radius:20px; float:right";
+            innerDiv.textContent = document.querySelector('#message').value;
+            div.appendChild(innerDiv);
             document.querySelector('#message').value = "";
             document.querySelector('.chatboxes').appendChild(div);
         }
 
+        function checkEnter(event) {
+            if(event.which == 13 || event.keyCode == 13) {
+                sendText();
+            }
+        }
         window.onload = function () {
             try {
                 window.localStorage.setItem('recording', false);
