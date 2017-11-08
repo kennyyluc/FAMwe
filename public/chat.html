@@ -218,15 +218,68 @@
             var innerDiv = document.createElement('div');
             innerDiv.style = "display: inline-block; padding: 10px; color: white; background: rgb(255,197,205); margin: 0 20px 2px 0; border-radius:20px; float:right";
             innerDiv.textContent = document.querySelector('#message').value;
+            if (window.localStorage.getItem('msgHistory')) {
+                var history = JSON.parse(window.localStorage.getItem('msgHistory'));
+                for (var i = 0; i < history.users.length; i++) {
+                    if (history.users[i].name === "Something") {
+                        console.log(history.users[i].msgs);
+                        history.users[i].msgs.push(document.querySelector('#message').value);
+                    }
+                }
+
+
+                window.localStorage.setItem('msgHistory', JSON.stringify(history));
+                console.log(window.localStorage.getItem('msgHistory'));
+            }
+            else {
+                var hstObj = {
+                    "users": [
+                        {
+                            "name": "Something",
+                            "msgs": []
+                        }
+                    ]
+                };
+                window.localStorage.setItem('msgHistory', JSON.stringify(hstObj));
+            }
+
             div.appendChild(innerDiv);
             document.querySelector('#message').value = "";
             document.querySelector('.chatboxes').appendChild(div);
         }
 
         function checkEnter(event) {
-            if(event.which == 13 || event.keyCode == 13) {
+            if (event.which == 13 || event.keyCode == 13) {
                 sendText();
             }
+        }
+
+        function populateChat() {
+            console.log('here');
+            if (window.localStorage.getItem('msgHistory')) {
+                console.log("inside");
+                var messages;
+                var history = JSON.parse(window.localStorage.getItem('msgHistory'));
+
+                for (var i = 0; i < history.users.length; i++) {
+                    if (history.users[i].name === "Something") {
+                        messages = history.users[i].msgs;
+                        console.log(messages);
+                        break;
+                    }
+                }
+
+                for (var i = 0; i < messages.length; i++) {
+                    var div = document.createElement('div');
+                    var innerDiv = document.createElement('div');
+                    innerDiv.style = "display: inline-block; padding: 10px; color: white; background: rgb(255,197,205); margin: 0 20px 2px 0; border-radius:20px; float:right";
+                    innerDiv.textContent = messages[i];
+
+                    div.appendChild(innerDiv);
+                    document.querySelector('.chatboxes').appendChild(div);
+                }
+            }
+            console.log('made it');
         }
         window.onload = function () {
             try {
@@ -236,11 +289,14 @@
                 //navigator.mediaDevices.getUserMedia;
                 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia
                 window.URL = window.URL || window.webkitURL;
+                populateChat();
             }
             catch (e) {
                 alert('Web Audio API is not supported in this browser');
             }
         }
+
+
     </script>
     <script src="recorder.js"></script>
 </body>
