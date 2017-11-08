@@ -5,10 +5,74 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Settings</title>
+
+        <style>
+
+        .navbar {
+          height: 50px;
+          width: 50px;
+        }
+
+        .navbar img{
+          border-radius: 50%;
+          width:50px;
+          float: left;
+        }
+
+        .profile {
+            text-align: center;
+            margin-top:-10px;
+        }
+
+        .profile .button{
+          border-radius: 50%;
+          width: 25px;
+          z-index: 10;
+          margin-top: -85px;
+          margin-left: 50px;
+          position:absolute;
+        }
+
+        .profile .picture{
+          border-radius: 50%;
+          width: 200px;
+          margin-right: 50px;
+        }
+
+        .profile p{
+          font-family: sans-serif;
+        }
+
+        .information p{
+          font-family: sans-serif;
+        }
+
+
+        </style>
     </head>
+
     <body>
-        <a href="home.html">Back home</a>
-        <a href="login.html">Log out</a>
+
+      <div class="navbar">
+        <a href="home.html"><img src="resources/BackButton.png" alt="back"></a>
+      </div>
+
+      <div class="profile">
+        <img class="picture" src="resources/mom.jpg">
+        <br>
+          <p>You !</p>
+        </br>
+      </div>
+
+      <div class="information">
+        <br>
+          <p> Name: </p><p>Jessie Wong</p>
+          <p> Birthday: </p><p>01/01/70</p>
+          <p> Logout </p>
+
+        </br>
+      </div>
+
     </body>
 
 </html>
