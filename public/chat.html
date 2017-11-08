@@ -1,110 +1,207 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <link rel="stylesheet" href="style.css" type="text/css">
-        <title>Chat</title>
-        <style>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <title>Chat</title>
+    <style>
+
+        html {
+            height: 100%;
+        }
+        body {
+            height: 100%;
+            background: rgb(255, 197, 205);
+        }
         .navbar {
             height: 50px;
-            width: 50px;
-          }
+            width: 100%;
+            background: white;
 
-          .navbar img{
+        }
+
+        .navbar img {
             border-radius: 50%;
-            width:50px;
+            width: 50px;
             float: left;
 
-          }
-        </style>
-    </head>
-    <body>
+        }
+
+        .below {
+            /*position: fixed;
+              bottom: 0;*/
+            background: rgb(255, 197, 205);
+            width: 100%;
+        }
+
+        .chatboxes {
+            display: flex;
+            flex-direction: column;
+            overflow-y: scroll;
+            max-height: 450px;
+            height: 450px;
+            background: white;
+        }
+
+        .chatContainer {
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="chatContainer">
         <div class="navbar">
             <span></span>
-            <a href="contactprofile.html"><img src="resources/BackButton.png" alt="Back"></a>
+            <a href="contactprofile.html">
+                <img src="resources/BackButton.png" alt="Back">
+            </a>
         </div>
         <div class="chatboxes">
-            
+
         </div>
         <div class="below">
-            <img src="" alt="keyboard" onclick="toggleTyping()">
-
-        </div>
-        <button id="start" onclick="toggleRecording()">Toggle Recording</button>
-        <!--<button id="stop">Stop Recording</button>-->
-       
-
-        <script>
-            var context;
-            var recorder;
-            var stream;
-
-            function startRecording() {
-                navigator.getUserMedia({ audio: true }, function (audioStream) {
-                    stream = audioStream;
+            <div class="audio">
+                <div>
+                    <img style="width:60px; margin:15px" src="resources/Messenger/Keyboard.png" alt="keyboard" onclick="openText()">
+                </div>
+                <div id="btnContainer" style="text-align:center">
+                    <img id="recordBtn" style="width:150px" src="resources/Messenger/StartRec.png" id="start" alt="mic" onclick="toggleRecording()">
+                </div>
                 
-                    var input = context.createMediaStreamSource(audioStream);
-                    recorder = new Recorder(input);
-                    recorder && recorder.record();
-                }, function (e) {
-                    console.error(e);
-                });
+                
+            </div>
+            <div class="text" style="display:none">
+                <img style="width:25px; margin:15px;" src="resources/Messenger/Default.png" alt="mic" onclick="openAudio()">
+                <input id="message" type="text" placeholder="Text Message">
+                <img style="width:50px" id="sendText" src="resources/Messenger/Send.png" alt="Send" onclick='sendText()'>
+            </div>
+        </div>
+    </div>
+
+
+    <!--<button id="stop">Stop Recording</button>-->
+
+
+    <script>
+        var context;
+        var recorder;
+        var stream;
+
+        function startRecording() {
+            navigator.getUserMedia({ audio: true }, function (audioStream) {
+                stream = audioStream;
+
+                var input = context.createMediaStreamSource(audioStream);
+                document.querySelector('#recordBtn').setAttribute('src', "resources/Messenger/Recording.png");
+                recorder = new Recorder(input);
+                recorder && recorder.record();
+            }, function (e) {
+                console.error(e);
+            });
+        }
+
+        function stopRecording(callback, AudioFormat) {
+            recorder && recorder.stop();
+
+            stream.getAudioTracks()[0].stop();
+
+
+            if (typeof (callback) == "function") {
+                recorder && recorder.exportWAV(function (blob) {
+                    callback(blob);
+                    recorder.clear();
+                }, (AudioFormat || "audio/wav"));
             }
-        
-            function stopRecording(callback, AudioFormat) {
-                recorder && recorder.stop();
+        }
 
-                stream.getAudioTracks()[0].stop();
+        function toggleRecording() {
+            console.log(window.localStorage.getItem('recording'));
+            if (window.localStorage.getItem('recording') == 'true') {
+                window.localStorage.setItem('recording', false);
+                stopRecording(function (AudioBLOB) {
+                    var url = URL.createObjectURL(AudioBLOB);
+                    
+                    var au = document.createElement('audio');
+                    au.controls = true;
+                    au.src = url;
+                    au.style = "width:280px";
 
+                    
+                    var container = document.querySelector('#btnContainer');
+                    container.innerHTML = "";
+                    container.appendChild(au);
 
-                if(typeof(callback) == "function"){
-                    recorder && recorder.exportWAV(function (blob) {
-                        callback(blob);
-                        recorder.clear();
-                    }, (AudioFormat || "audio/wav"));
-                }
+                    var image = document.createElement('img');
+                    var br = document.createElement('br');
+
+                    image.setAttribute('src', "resources/Messenger/Send.png");
+                    image.setAttribute('alt', "Send");
+                    image.style = "width:80px; margin:20px";
+
+                    image.onclick = function() {
+                        var div = document.createElement('div');
+                        div.style = "float:right; text-align:right; margin-right: 20px";
+                        div.appendChild(au);
+                        
+                        document.querySelector('.chatboxes').appendChild(div);
+                        
+                        container.innerHTML = "";
+                        var btn = document.createElement('img');
+                        btn.setAttribute('src', "resources/Messenger/StartRec.png");
+                        btn.setAttribute('alt', "Record");
+                        btn.style = "width:150px";
+                        btn.onclick = toggleRecording;
+                        container.appendChild(btn);
+                    }
+
+                    container.appendChild(br);
+                    container.appendChild(image)
+                }, "audio/wav");
             }
-
-            function toggleRecording() {
-                console.log(window.localStorage.getItem('recording'));
-                if (window.localStorage.getItem('recording') == 'true') {
-                    window.localStorage.setItem('recording', false);
-                    stopRecording(function(AudioBLOB){
-                        var url = URL.createObjectURL(AudioBLOB);
-                        var au = document.createElement('audio');
-
-                        au.controls = true;
-                        au.src = url;
-                        document.querySelector('.chatboxes').appendChild(au);
-                    }, "audio/wav");
-                }
-                else {
-                    window.localStorage.setItem('recording', true);
-                    startRecording();
-                }
+            else {
+                window.localStorage.setItem('recording', true);
+                startRecording();
             }
+        }
 
-            function toggleTyping() {
+        function openText() {
+            document.querySelector('.audio').style.display = "none";
+            document.querySelector('.text').style.display = "block";
+        }
 
+        function openAudio() {
+            document.querySelector('.text').style.display = "none";
+            document.querySelector('.audio').style.display = "block";
+        }
+
+        function sendText() {
+            var div = document.createElement('div');
+            div.style = "display: inline-block; padding: 10px; color: white; background: rgb(255,197,205); margin: 0 20px 2px 0; border-radius:20px";
+            div.textContent = document.querySelector('#message').value;
+            document.querySelector('#message').value = "";
+            document.querySelector('.chatboxes').appendChild(div);
+        }
+
+        window.onload = function () {
+            try {
+                window.localStorage.setItem('recording', false);
+                window.AudioContext = window.AudioContext || window.webkitAudioContext;
+                context = new AudioContext();
+                //navigator.mediaDevices.getUserMedia;
+                navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia
+                window.URL = window.URL || window.webkitURL;
             }
-            
-            window.onload = function() {
-                try {
-                    window.localStorage.setItem('recording', false);
-                    window.AudioContext = window.AudioContext || window.webkitAudioContext;
-                    context = new AudioContext();
-                    //navigator.mediaDevices.getUserMedia;
-                    navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia
-                    window.URL = window.URL || window.webkitURL;
-                }
-                catch(e) {
-                    alert('Web Audio API is not supported in this browser');
-                }
+            catch (e) {
+                alert('Web Audio API is not supported in this browser');
             }
-        </script>
-        <script src="recorder.js"></script>
-    </body>
+        }
+    </script>
+    <script src="recorder.js"></script>
+</body>
 
 </html>
