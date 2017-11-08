@@ -62,7 +62,7 @@
     <div class="chatContainer">
         <div class="navbar">
             <span></span>
-            <a href="contactprofile.html">
+            <a href="" onclick="goToContact(event)">
                 <img src="resources/BackButton.png" alt="Back">
             </a>
         </div>
@@ -221,10 +221,13 @@
             if (window.localStorage.getItem('msgHistory')) {
                 var history = JSON.parse(window.localStorage.getItem('msgHistory'));
                 for (var i = 0; i < history.users.length; i++) {
-                    if (history.users[i].name === "Something") {
+                    console.log('looping');
+                    if (history.users[i].name === window.localStorage.getItem('chosenUser')) {
                         console.log(history.users[i].msgs);
                         history.users[i].msgs.push(document.querySelector('#message').value);
+                        break;
                     }
+
                 }
 
 
@@ -232,15 +235,7 @@
                 console.log(window.localStorage.getItem('msgHistory'));
             }
             else {
-                var hstObj = {
-                    "users": [
-                        {
-                            "name": "Something",
-                            "msgs": []
-                        }
-                    ]
-                };
-                window.localStorage.setItem('msgHistory', JSON.stringify(hstObj));
+                
             }
 
             div.appendChild(innerDiv);
@@ -254,19 +249,33 @@
             }
         }
 
-        function populateChat() {
+        function populateChat(user) {
             console.log('here');
             if (window.localStorage.getItem('msgHistory')) {
                 console.log("inside");
-                var messages;
+                var messages = [];
                 var history = JSON.parse(window.localStorage.getItem('msgHistory'));
-
+                console.log('msgHistory is' + JSON.stringify(history));
+                var count = 0;
                 for (var i = 0; i < history.users.length; i++) {
-                    if (history.users[i].name === "Something") {
+                    if (history.users[i].name === user) {
                         messages = history.users[i].msgs;
                         console.log(messages);
                         break;
                     }
+                    count++;
+                }
+                console.log(count);
+
+                if (count == history.users.length) {
+                    console.log("here");
+                    var newUser = {
+                        "name": window.localStorage.getItem('chosenUser'),
+                        "msgs": []
+                    }
+                    history.users.push(newUser);
+                    window.localStorage.setItem('msgHistory', JSON.stringify(history));
+                    console.log(JSON.stringify(history));
                 }
 
                 for (var i = 0; i < messages.length; i++) {
@@ -279,7 +288,23 @@
                     document.querySelector('.chatboxes').appendChild(div);
                 }
             }
+            else {
+                var hstObj = {
+                    "users": [
+                        {
+                            "name": window.localStorage.getItem('chosenUser'),
+                            "msgs": []
+                        }
+                    ]
+                };
+                window.localStorage.setItem('msgHistory', JSON.stringify(hstObj));
+            }
             console.log('made it');
+        }
+
+        function goToContact(event) {
+            event.preventDefault();
+            window.location = "/resources/Family/" + window.localStorage.getItem('chosenUser') + ".html";
         }
         window.onload = function () {
             try {
@@ -289,7 +314,9 @@
                 //navigator.mediaDevices.getUserMedia;
                 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia
                 window.URL = window.URL || window.webkitURL;
-                populateChat();
+                var user = window.localStorage.getItem('chosenUser');
+                console.log(user);
+                populateChat(user);
             }
             catch (e) {
                 alert('Web Audio API is not supported in this browser');
