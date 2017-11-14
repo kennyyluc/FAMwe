@@ -38,19 +38,10 @@
 
           }
 
-          .profile .button{
-            border-radius: 50%;
-            width: 25px;
-            z-index: 10;
-            margin-top: -85px;
-            margin-left: 50px;
-            position:absolute;
-          }
 
           .profile .picture{
             border-radius: 50%;
             width: 200px;
-            margin-right: 50px;
           }
 
           .left{
@@ -69,38 +60,64 @@
     <body>
         <div class="navbar">
             <span></span>
-            <a href="../../home.html"><img src="../BackButton.png" alt="Back"></a>
+            <a href="home.html"><img src="resources/BackButton.png" alt="Back"></a>
         </div>
 
         <div class="profile">
-            <img class="picture" src="AuntVanna.png">
+            <img class="picture" src="">
             <br>
-            <span>Aunt Vanna</span>
+            <span id="userName"></span>
             <br>
-            <a class="button" href="Settings/Vanna Settings.html"><img src="../Settings.png" alt="Edit Profile"></a>
+           
         </div>
 
 
         <div class="icons">
           <div class="left">
-            <a href="Call/Aunt Vanna Call.html"><img src="../PhoneButton.png" alt="Phone"></a>
+            <a href="call.html"><img src="resources/PhoneButton.png" alt="Phone"></a>
             <br>
-            <a href="Facetime/Aunt Vanna F.html"><img style="margin-top:20px;" src="../VideoCallButton.png" alt="FaceTime"></a>
+            <a href="facetime.html"><img style="margin-top:20px;" src="resources/VideoCallButton.png" alt="FaceTime"></a>
           </div>
           <div class="right">
-              <a href="../../chat.html" onclick="prepareChat(event)"><img src="../TextButton.png" alt="Chat"></a>
+              <a href="chat.html"><img src="resources/TextButton.png" alt="Chat"></a>
             <br>
-            <a href="Events/Aunt Vanna E.html"><img style="margin-top:20px" src="../Calendar.png" alt="Events"></a>
+            <a href="events.html"><img style="margin-top:20px" src="resources/Calendar.png" alt="Events"></a>
           </div>
         </div>
 
         <script>
-            function prepareChat(event) {
-              event.preventDefault();
-              window.localStorage.setItem('chosenUser', "AuntVanna");
-              window.localStorage.setItem('type', "Family");
-              window.location = "../../chat.html";
+            var data = {};
+            var type = window.localStorage.getItem('chosenType');
+            console.log(type);
+            
+            var user = window.localStorage.getItem('chosen');
+            console.log(user);
+
+            window.onload = function() {
+              data = JSON.parse(window.localStorage.getItem('contacts'));
+              document.querySelector('#userName').textContent = user;
+              if (type === 'Family') {
+                for(var i = 0; i < data.family.length; i++) {
+                  if (data.family[i].name === user) {
+                    document.querySelector('.picture').setAttribute('src', 'resources/Family/' + data.family[i].img);
+                    break;
+                  }
+                }
+              }
+              else if (type === 'Friends') {
+                for(var i = 0; i < data.friends.length; i++) {
+                  if (data.friends[i].name === user) {
+                    document.querySelector('.picture').setAttribute('src', 'resources/Friends/' + data.friends[i].img);
+                    break;
+                  }
+                }
+              }
+              var settingsBtn = document.createElement('a');
+              settingsBtn.setAttribute('href', 'contactsettings.html');
+              settingsBtn.innerHTML = '<img src="resources/Settings.png" alt="Edit Profile" style="border-radius: 50%;width: 50px;z-index: 10;margin-top: -85px; margin-left: 50px;position:absolute;"></a>';
+              document.querySelector('.profile').appendChild(settingsBtn);
             }
+
         </script>
   
 

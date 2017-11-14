@@ -143,7 +143,7 @@
     <div id="family" style="margin-top:10px" class="contacts">
         <div class="row" id="row1Family">
             <div class="item1">
-                <img style="border-radius: 50%; width: 125px;" src="resources/AddButton.png" alt="Fam1" onclick="openAddBox()">
+                <img style="border-radius: 50%; width: 125px;" src="resources/AddButton.png" alt="Family" onclick="openAddBox()">
                 <br>
                 <span>Add</span>
             </div>
@@ -154,9 +154,7 @@
     <div id="friends" style="margin-top:10px; display:none" class="contacts">
         <div class="row" id="row1Friends">
             <div class="item1">
-                <a href="addcontact.html">
-                    <img src="resources/AddButton.png" alt="Fam1">
-                </a>
+                <img style="border-radius: 50%; width: 125px;" src="resources/AddButton.png" alt="Friends" onclick="openAddBox()">
                 <br>
                 <span>Add</span>
             </div>
@@ -207,7 +205,7 @@
             for (var i = 0; i < obj.length; i++) {
                 if (i == 0) {
                     var newDiv = document.createElement('div');
-                    newDiv.innerHTML = '<a href="contactprofile.html"><img src="resources/' + type + '/' + obj[i].img + '" alt="' + type +  '"></a><br><span>' + obj[i].name + '</span>';
+                    newDiv.innerHTML = '<a href="contactprofile.html" onclick="goToContact(event,\'' + obj[i].name +  '\',\'' + type +'\')"><img src="resources/' + type + '/' + obj[i].img + '" alt="' + type +  '"></a><br><span>' + obj[i].name + '</span>';
                     newDiv.className += " item2";
                     
                     document.querySelector('#row1' + type).appendChild(newDiv);
@@ -216,13 +214,25 @@
                     var row = document.createElement('div');
                     row.className = "row";
 
-                    var htmlString = '<div class="item1"><a href="contactprofile.html"><img src="resources/' + type + '/' + obj[i].img + '" alt="' + type +  '"></a><br><span>' + obj[i].name + '</span></div>';
+                    var htmlString = '<div class="item1"><a href="contactprofile.html" onclick="goToContact(event,\'' + obj[i].name +  '\',\'' + type +'\')"><img src="resources/' + type + '/' + obj[i].img + '" alt="' + type +  '"></a><br><span>' + obj[i].name + '</span></div>';
                     i++;
                     if (i < obj.length) {
-                        htmlString += '<div class="item2"><a href="contactprofile.html"><img src="resources/' + type + '/' + obj[i].img + '" alt="' + type +  '"></a><br><span>' + obj[i].name + '</span></div>';
+                        htmlString += '<div class="item2"><a href="contactprofile.html"onclick="goToContact(event,\'' + obj[i].name + '\',\'' + type +'\')"><img src="resources/' + type + '/' + obj[i].img + '" alt="' + type +  '"></a><br><span>' + obj[i].name + '</span></div>';
                     }
                   
                     row.innerHTML = htmlString;
+                    console.log(row)
+                    /*row.querySelector('.item1').querySelector('a').onclick = function(event) {
+                        console.log('hi');
+                        console.log(obj[i-1].name);
+                        goToContact(event, obj[i-1].name);
+                    }
+                    
+                    if (i < obj.length) {
+                        row.querySelector('.item2').querySelector('a').onclick = function(event) {
+                            goToContact(event, obj[i].name);
+                        }
+                    }*/
                     if (type === "Family") 
                         document.querySelector('#family').appendChild(row);
                     else if (type === "Friends")
@@ -231,6 +241,14 @@
             }
         }
 
+        function goToContact(event, chosenUser, chosenType) {
+            event.preventDefault();
+            window.localStorage.setItem('chosen', chosenUser);
+            window.localStorage.setItem('chosenType', chosenType);
+            console.log(window.localStorage.getItem('chosen'));
+            console.log(window.localStorage.getItem('chosenType'));
+            window.location = 'contactprofile.html';
+        }
 
         function toggleFamily() {
             document.querySelector('#family').style.display = "flex";
@@ -253,7 +271,8 @@
         function addContact() {
             var name = document.querySelector('#name').value;
             var number = document.querySelector('#number').value;
-            var type = document.querySelector('input[checked]').value;
+            var type = document.querySelector('input[name="contactType"]:checked').value;
+            console.log(type);
             document.querySelector('#addBoxBg').style.display = "none";
             var newObj = {
                 "name": name,
@@ -273,12 +292,13 @@
             }
 
             window.location.reload();
+
         }
 
         function closeBox() {
             document.querySelector('#name').value = "";
             document.querySelector('#number').value = "";
-            document.querySelector('input[checked]').value = "";
+            document.querySelector('input[checked]').value = "family";
             document.querySelector('#addBoxBg').style.display = "none";
         }
 
