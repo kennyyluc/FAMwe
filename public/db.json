@@ -1,0 +1,38 @@
+{
+    "family": [
+        {
+            "name": "Dad",
+            "img": "Dad.png"
+        },
+        {
+            "name": "Son",
+            "img": "Son.png"
+        },
+        {
+            "name": "Daughter",
+            "img": "Daughter.jpg"
+        },
+        {
+            "name": "Uncle Timmie",
+            "img": "UncleTim.png"
+        },
+        {
+            "name": "Aunt Vanna",
+            "img": "AuntVanna.png"
+        },
+        {
+            "name": "Lindy",
+            "img": "Lindy.png"
+        }, 
+        {
+            "name": "Kenny",
+            "img": "Kenny.png"
+        }
+    ],
+    "friends": [
+        {
+            "name": "马化腾",
+            "img": "马化腾.jpg"
+        }
+    ]
+}

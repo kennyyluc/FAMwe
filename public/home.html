@@ -8,10 +8,9 @@
     <link rel="stylesheet" href="style.css" type="text/css">
     <title>Home</title>
     <style>
-
         .contactToggle {
             position: fixed;
-            display:flex;
+            display: flex;
             flex-direction: row;
             bottom: 0;
             width: 100%;
@@ -35,7 +34,7 @@
             display: flex;
             flex-direction: column;
             overflow-y: scroll;
-            max-height:500px;
+            max-height: 500px;
         }
 
         .row {
@@ -63,7 +62,55 @@
             text-align: center;
         }
 
+        #addBoxBg {
+            z-index: 1;
+            display: none;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            position: fixed;
+            background-color: #000;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
 
+        #addBoxContent {
+            color: #ee6e73;
+            background-color: #fff;
+            width: 75%;
+            padding: 15px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        .addinput {
+            font-size: 20px;
+            border: 1px solid #E0E0E0;
+            padding: 5px;
+            margin-bottom: 15px;
+        }
+
+        .addinput::placeholder {
+            color: #D8D8D8;
+        }
+
+        label {
+            font-size: 20px;
+            color: #ffb6c1;
+        }
+
+        #addBoxContent button {
+            font-size: 20px;
+            background-color: #ffb6c1;
+            border: none;
+            color: #fff;
+            border-radius: 12px;
+            margin-top: 20px;
+            padding: 5px 10px;
+        }
     </style>
 </head>
 
@@ -75,87 +122,41 @@
 
     <div class="navbar">
         <span style="margin-left:35px">FAMwe</span>
-        <a style="" href="settings.html">
+        <a href="settings.html">
             <img style="width:35px" src="resources/Settings.png" alt="">
         </a>
     </div>
 
+    <div id="addBoxBg">
+        <div id="addBoxContent">
+            <p style="text-align:center; font-size:30px">Add Contact</p>
+            <input class="addinput" type="text" id="name" placeholder="Name" onfocus="this.placeholder = ''">
+            <br>
+            <input class="addinput" type="text" id="number" placeholder="Phone #" onfocus="this.placeholder = ''">
+            <br>
+            <input type="radio" name="contactType" value="family" checked>
+            <label>Family</label>
+            <br>
+            <input type="radio" name="contactType" value="friend">
+            <label>Friend</label>
+            <br>
+            <button onclick="addContact()">Submit</button>
+        </div>
+    </div>
     <!-- container for family contacts -->
     <div id="family" style="margin-top:10px" class="contacts">
-        <div class="row">
+        <div class="row" id="row1Family">
             <div class="item1">
-                <a href="addcontact.html">
-                    <img src="resources/AddButton.png" alt="Fam1">
-                </a>
+                <img style="border-radius: 50%; width: 125px;" src="resources/AddButton.png" alt="Fam1" onclick="openAddBox()">
                 <br>
                 <span>Add</span>
             </div>
-            <div class="item2">
-                <a href="resources/Family/Dad.html">
-                    <img src="resources/Family/Dad.png" alt="Fam1">
-                </a>
-                <br>
-                <span>Dad</span>
-            </div>
         </div>
-
-        <div class="row">
-            <div class="item1">
-                <a href="resources/Family/Son.html">
-                    <img src="resources/Family/Son.png" alt="Fam1">
-                </a>
-                <br>
-                <span>Son</span>
-            </div>
-            <div class="item2">
-                <a href="resources/Family/Daughter.html">
-                    <img src="resources/Family/Daughter.jpg" alt="Fam1">
-                </a>
-                <br>
-                <span>Daughter</span>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="item1">
-                <a href="resources/Family/UncleTim.html">
-                    <img src="resources/Family/UncleTim.png" alt="Fam1">
-                </a>
-                <br>
-                <span>Uncle Timmie</span>
-            </div>
-            <div class="item2">
-                <a href="resources/Family/AuntVanna.html">
-                    <img src="resources/Family/AuntVanna.png" alt="Fam1">
-                </a>
-                <br>
-                <span>Aunt Vanna</span>
-            </div>
-        </div>
-
-        <div class="row">
-                <div class="item1">
-                    <a href="resources/Family/Lindy.html">
-                        <img src="resources/Family/Lindy.png" alt="Fam1">
-                    </a>
-                    <br>
-                    <span>Lindy</span>
-                </div>
-                <div class="item2">
-                    <a href="resources/Family/Kenny.html">
-                        <img src="resources/Family/Kenny.png" alt="Fam1">
-                    </a>
-                    <br>
-                    <span>Kenny</span>
-                </div>
-            </div>
-
-
     </div>
 
     <!-- Container of friends -->
     <div id="friends" style="margin-top:10px; display:none" class="contacts">
-        <div class="row">
+        <div class="row" id="row1Friends">
             <div class="item1">
                 <a href="addcontact.html">
                     <img src="resources/AddButton.png" alt="Fam1">
@@ -163,16 +164,16 @@
                 <br>
                 <span>Add</span>
             </div>
-            <div class="item2">
+            <!--<div class="item2">
                 <a href="resources/Friends/马化腾.html">
                     <img src="resources/Friends/马化腾.jpg" alt="Fam1">
                 </a>
                 <br>
                 <span>马化腾</span>
-            </div>
+            </div>-->
         </div>
 
-        <div class="row">
+        <!--<div class="row">
             <div class="item1">
                 <a href="resources/Friends/王健林.html">
                     <img src="resources/Friends/王健林.jpg" alt="Fam1">
@@ -187,40 +188,152 @@
                 <br>
                 <span>马云</span>
             </div>
-        </div>
+        </div>-->
     </div>
 
     <div class="contactToggle">
         <button id="familyButton" style="background-color:#ffb6c1" onclick="toggleFamily()">FAMILY</button>
-        <button id= "friendButton" style="background-color:#fff8e7; color: #ffb6c1" onclick="toggleFriends()">FRIENDS</button>
+        <button id="friendButton" style="background-color:#fff8e7; color: #ffb6c1" onclick="toggleFriends()">FRIENDS</button>
     </div>
 
 
     <script>
+        var data = {};
+
+        window.onload = function () {
+            if (!window.localStorage.getItem('contacts') || window.localStorage.getItem('contacts') === "") {
+                var obj = {
+                    "family": [
+                        { "name": "Dad", "num": "295-293-1475", "img": "Dad.png" },
+                        { "name": "Son", "num": "918-842-5712", "img": "Son.png" },
+                        { "name": "Daughter", "num": "406-581-8513", "img": "Daughter.jpg" },
+                        { "name": "Uncle Timmie", "num": "483-458-1924", "img": "UncleTim.png" },
+                        { "name": "Aunt Vanna", "num": "408-329-3814", "img": "AuntVanna.png" },
+                        { "name": "Lindy", "num": "405-481-1299", "img": "Lindy.png" },
+                        { "name": "Kenny", "num": "625-913-0010", "img": "Kenny.png" }
+                    ],
+                    "friends": [
+                        { "name": "马化腾", "num": "385-285-0141", "img": "马化腾.jpg" },
+                        { "name": "王健林", "num": "495-288-1848", "img": "王健林.jpg" },
+                        { "name": "马云", "num": "495-193-2292", "img": "马云.jpg" }
+                    ]
+                }
+                window.localStorage.setItem('contacts', JSON.stringify(obj));
+                data = JSON.parse(window.localStorage.getItem('contacts'));
+                console.log(window.localStorage.getItem('contacts'));
+            }
+            else {
+                data = JSON.parse(window.localStorage.getItem('contacts'));
+                console.log(data);
+            }
+
+            createContacts(data.family, 'Family');
+            createContacts(data.friends, 'Friends');
+        }
+
+        function createContacts(obj, type) {
+            for (var i = 0; i < obj.length; i++) {
+                if (i == 0) {
+                    var newDiv = document.createElement('div');
+                    /* TODO: fix later */
+                    newDiv.innerHTML = '<a href="contactprofile.html"><img src="resources/' + type + '/' + obj[i].img + '" alt="' + type +  '"></a><br><span>' + obj[i].name + '</span>';
+                    newDiv.className += " item2";
+                    
+                    document.querySelector('#row1' + type).appendChild(newDiv);
+                }
+                else {
+                    var row = document.createElement('div');
+                    row.className = "row";
+
+                    var htmlString = '<div class="item1"><a href="contactprofile.html"><img src="resources/' + type + '/' + obj[i].img + '" alt="' + type +  '"></a><br><span>' + obj[i].name + '</span></div>';
+                    i++;
+                    if (i < obj.length) {
+                        htmlString += '<div class="item2"><a href="contactprofile.html"><img src="resources/' + type + '/' + obj[i].img + '" alt="' + type +  '"></a><br><span>' + obj[i].name + '</span></div>';
+                    }
+                  
+                    row.innerHTML = htmlString;
+                    if (type === "Family") 
+                        document.querySelector('#family').appendChild(row);
+                    else if (type === "Friends")
+                        document.querySelector('#friends').appendChild(row);
+                }
+            }
+        }
+
+        /*function createContacts() {
+            for (var i = 0; i < data.family.length; i++) {
+                if (i == 0) {
+                    var newDiv = document.createElement('div');
+     
+                    newDiv.innerHTML = '<a href="contactprofile.html"><img src="resources/Family/' + data.family[i].img + '" alt="Fam"></a><br><span>' + data.family[i].name + '</span>';
+                    newDiv.className += " item2";
+                    
+                    document.querySelector('#row1').appendChild(newDiv);
+                }
+                else {
+                    var row = document.createElement('div');
+                    row.className = "row";
+
+                    var htmlString = '<div class="item1"><a href="contactprofile.html"><img src="resources/Family/' + data.family[i].img + '" alt="Fam"></a><br><span>' + data.family[i].name + '</span></div>';
+                    i++;
+                    if (i < data.family.length) {
+                        htmlString += '<div class="item2"><a href="contactprofile.html"><img src="resources/Family/' + data.family[i].img + '" alt="Fam"></a><br><span>' + data.family[i].name + '</span></div>';
+                    }
+                  
+                    row.innerHTML = htmlString;
+                    document.querySelector('#family').appendChild(row);
+                }
+            }
+        }*/
+
 
         function toggleFamily() {
-          document.querySelector('#family').style.display = "flex";
-          document.querySelector('#friends').style.display = "none";
-          document.querySelector('#family').scrollTop=0;
-          colorFamily();
+            document.querySelector('#family').style.display = "flex";
+            document.querySelector('#friends').style.display = "none";
+            document.querySelector('#family').scrollTop = 0;
+
+            document.querySelector('#familyButton').style = "background-color:#ffb6c1; color: white";
+            document.querySelector('#friendButton').style = "background-color:#fff8e7; color: #ffb6c1";
         }
 
         function toggleFriends() {
-          document.querySelector('#friends').style.display = "flex";
-          document.querySelector('#family').style.display = "none";
-          document.querySelector('#friends').scrollTop=0;
-          colorFriends();
+            document.querySelector('#friends').style.display = "flex";
+            document.querySelector('#family').style.display = "none";
+            document.querySelector('#friends').scrollTop = 0;
+
+            document.querySelector('#familyButton').style = "background-color:#fff8e7; color: #ffb6c1";
+            document.querySelector('#friendButton').style = "background-color:#ffb6c1; color: white";
         }
 
-        function colorFriends() {
-          document.querySelector('#familyButton').style="background-color:#fff8e7; color: #ffb6c1";
-          document.querySelector('#friendButton').style="background-color:#ffb6c1; color: white";
+        function addContact() {
+            var name = document.querySelector('#name').value;
+            var number = document.querySelector('#number').value;
+            var type = document.querySelector('input[checked]').value;
+            document.querySelector('#addBoxBg').style.display = "none";
+            var newObj = {
+                "name": name,
+                "num": number,
+                "img": ""
+            }
+            if (type === "family") {
+                data.family.push(newObj)
+                window.localStorage.setItem('contacts', JSON.stringify(data));
+                console.log(window.localStorage.getItem('contacts'));
+            }
+    
+            else if (type === "friend") {
+                data.friends.push(newObj);
+                window.localStorage.setItem('contacts', JSON.stringify(data));
+                console.log(window.localStorage.getItem('contacts'));
+            }
         }
 
-        function colorFamily() {
-          document.querySelector('#familyButton').style="background-color:#ffb6c1; color: white";
-          document.querySelector('#friendButton').style="background-color:#fff8e7; color: #ffb6c1";
+        function openAddBox() {
+            document.querySelector('#addBoxBg').style.display = "block";
         }
+
+
+
     </script>
 </body>
 
