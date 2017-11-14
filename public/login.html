@@ -8,51 +8,79 @@
 
         <style>
 
+        html{
+          height: 100%;
+        }
+
         body {
-          background: linear-gradient(to bottom,#ffb6c1 50%, white);
-          background-repeat: no-repeat, no-repeat, repeat-y;
+          width: 100%;
+          background: linear-gradient(to bottom, #ffb6c1, white);
+          background-repeat: repeat-x;
         }
 
         .logo img{
           position: flex;
           flex-direction: row;
-          margin-left: 35px;
-
+          margin-left: 130px;
+          margin-top: 40px;
+          width: 100px;
         }
 
         .logo p{
           text-align: center;
-          margin-top: -40px;
+          margin-top: 1px;
           color: white;
           font-family: sans-serif;
           letter-spacing: 1.5px;
-          font-weight: 800;
+          font-weight: 500;
           font-size: 50px;
+          text-shadow: 3px 1px 9px #888888;
         }
 
         .logo .message {
           text-align: center;
           margin-top: 50px;
-          color:#ffb6c1;
+          color: white;
           font-family: sans-serif;
           letter-spacing: 1.5px;
           font-weight: 800;
-          font-size: 20px;
+          font-size: 30px;
+          text-shadow: 3px 1px 9px #888888;
         }
 
         .loginbutton img{
           position: fixed;
           display:flex;
           flex-direction: row;
-          bottom: 20%;
-          right: 30%;
-          left: 30%;
+          bottom: 5%;
+          right: 36%;
+          left: 36%;
           width: 100%;
-          width: 150px;
+          width: 100px;
           text-align: center;
           line-height: 100px;
           -webkit-border-radius: 30px;
           -moz-border-radius: 30px;
+        }
+
+        .loginbutton p{
+          text-align: center;
+          position: relative;
+          color: gray;
+          font-family: sans-serif;
+        }
+
+        .phone img{
+          width: 300px;
+          margin-left: 30px;
+          margin-top: -10px;
+        }
+
+        .phone p{
+          text-align: center;
+          position: relative;
+          color: gray;
+          font-family: sans-serif;
         }
         </style>
     </head>
@@ -61,12 +89,19 @@
       <div class="logo">
         <a><img src="resources/LogoWhite.png"></a>
         <p>FAMwe</p>
-        <p class="message">Welcome back, Jessie!</p>
+        <p class="message">LOGIN HERE</p>
       </div>
 
+      <div class="phone">
+        <p>PHONE NUMBER</p>
+        <a><img src="resources/Rectangle.png"></a>
+        <p>PASSWORD</p>
+        <a><img src="resources/Rectangle.png"></a>
+      </div>
 
       <div class="loginbutton">
-        <a href="home.html"><img src="resources/Login.png"alt="Login"></a>
+        <p></p>
+        <a href="confirmation.html"><img src="resources/Forward.png"alt="Login"></a>
       </div>
                   <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
                   <script>
