@@ -115,12 +115,7 @@
 </head>
 
 <body>
-    <!--<div class="title">
-        <h1>FAMwe</h1>
-      </div>-->
-    <!-- some kind of app bar -->
-
-    <div class="navbar">
+   <div class="navbar">
         <span style="margin-left:35px">FAMwe</span>
         <a href="settings.html">
             <img style="width:35px" src="resources/Settings.png" alt="">
@@ -129,6 +124,7 @@
 
     <div id="addBoxBg">
         <div id="addBoxContent">
+            <img src="/resources/Cancel.png" style="float:left; border-radius:50%" width="30px" alt="X" onclick="closeBox()">
             <p style="text-align:center; font-size:30px">Add Contact</p>
             <input class="addinput" type="text" id="name" placeholder="Name" onfocus="this.placeholder = ''">
             <br>
@@ -164,31 +160,7 @@
                 <br>
                 <span>Add</span>
             </div>
-            <!--<div class="item2">
-                <a href="resources/Friends/马化腾.html">
-                    <img src="resources/Friends/马化腾.jpg" alt="Fam1">
-                </a>
-                <br>
-                <span>马化腾</span>
-            </div>-->
         </div>
-
-        <!--<div class="row">
-            <div class="item1">
-                <a href="resources/Friends/王健林.html">
-                    <img src="resources/Friends/王健林.jpg" alt="Fam1">
-                </a>
-                <br>
-                <span>王健林</span>
-            </div>
-            <div class="item2">
-                <a href="resources/Friends/马云.html">
-                    <img src="resources/Friends/马云.jpg" alt="Fam1">
-                </a>
-                <br>
-                <span>马云</span>
-            </div>
-        </div>-->
     </div>
 
     <div class="contactToggle">
@@ -235,7 +207,6 @@
             for (var i = 0; i < obj.length; i++) {
                 if (i == 0) {
                     var newDiv = document.createElement('div');
-                    /* TODO: fix later */
                     newDiv.innerHTML = '<a href="contactprofile.html"><img src="resources/' + type + '/' + obj[i].img + '" alt="' + type +  '"></a><br><span>' + obj[i].name + '</span>';
                     newDiv.className += " item2";
                     
@@ -259,32 +230,6 @@
                 }
             }
         }
-
-        /*function createContacts() {
-            for (var i = 0; i < data.family.length; i++) {
-                if (i == 0) {
-                    var newDiv = document.createElement('div');
-     
-                    newDiv.innerHTML = '<a href="contactprofile.html"><img src="resources/Family/' + data.family[i].img + '" alt="Fam"></a><br><span>' + data.family[i].name + '</span>';
-                    newDiv.className += " item2";
-                    
-                    document.querySelector('#row1').appendChild(newDiv);
-                }
-                else {
-                    var row = document.createElement('div');
-                    row.className = "row";
-
-                    var htmlString = '<div class="item1"><a href="contactprofile.html"><img src="resources/Family/' + data.family[i].img + '" alt="Fam"></a><br><span>' + data.family[i].name + '</span></div>';
-                    i++;
-                    if (i < data.family.length) {
-                        htmlString += '<div class="item2"><a href="contactprofile.html"><img src="resources/Family/' + data.family[i].img + '" alt="Fam"></a><br><span>' + data.family[i].name + '</span></div>';
-                    }
-                  
-                    row.innerHTML = htmlString;
-                    document.querySelector('#family').appendChild(row);
-                }
-            }
-        }*/
 
 
         function toggleFamily() {
@@ -313,7 +258,7 @@
             var newObj = {
                 "name": name,
                 "num": number,
-                "img": ""
+                "img": "Kenny.png"
             }
             if (type === "family") {
                 data.family.push(newObj)
@@ -326,6 +271,15 @@
                 window.localStorage.setItem('contacts', JSON.stringify(data));
                 console.log(window.localStorage.getItem('contacts'));
             }
+
+            window.location.reload();
+        }
+
+        function closeBox() {
+            document.querySelector('#name').value = "";
+            document.querySelector('#number').value = "";
+            document.querySelector('input[checked]').value = "";
+            document.querySelector('#addBoxBg').style.display = "none";
         }
 
         function openAddBox() {

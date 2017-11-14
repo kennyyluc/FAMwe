@@ -34,6 +34,7 @@
           .profile {
               text-align: center;
               margin-top:-10px;
+              font-family: sans-serif;
 
           }
 
@@ -49,6 +50,7 @@
           .profile .picture{
             border-radius: 50%;
             width: 200px;
+            margin-right: 50px;
           }
 
           .left{
@@ -67,31 +69,40 @@
     <body>
         <div class="navbar">
             <span></span>
-            <a href="home.html"><img src="resources/BackButton.png" alt="Back"></a>
+            <a href="../../home.html"><img src="../BackButton.png" alt="Back"></a>
         </div>
 
         <div class="profile">
-            <img class="picture" src="resources/Kevin Malone.png">
+            <img class="picture" src="AuntVanna.png">
             <br>
-            <span>Kevin Malone</span>
+            <span>Aunt Vanna</span>
             <br>
-            <a class="button" href="contactsettings.html"><img src="resources/Settings.png" alt="Edit Profile"></a>
+            <a class="button" href="Settings/Vanna Settings.html"><img src="../Settings.png" alt="Edit Profile"></a>
         </div>
 
 
         <div class="icons">
           <div class="left">
-            <a href="call.html"><img src="resources/PhoneButton.png" alt="Phone"></a>
+            <a href="Call/Aunt Vanna Call.html"><img src="../PhoneButton.png" alt="Phone"></a>
             <br>
-            <a href="facetime.html"><img style="margin-top:20px;" src="resources/VideoCallButton.png" alt="FaceTime"></a>
+            <a href="Facetime/Aunt Vanna F.html"><img style="margin-top:20px;" src="../VideoCallButton.png" alt="FaceTime"></a>
           </div>
           <div class="right">
-            <a href="chat.html"><img src="resources/TextButton.png" alt="Chat"></a>
+              <a href="../../chat.html" onclick="prepareChat(event)"><img src="../TextButton.png" alt="Chat"></a>
             <br>
-            <a href="calendar.html"><img style="margin-top:20px" src="resources/Calendar.png" alt="Events"></a>
+            <a href="Events/Aunt Vanna E.html"><img style="margin-top:20px" src="../Calendar.png" alt="Events"></a>
           </div>
         </div>
 
+        <script>
+            function prepareChat(event) {
+              event.preventDefault();
+              window.localStorage.setItem('chosenUser', "AuntVanna");
+              window.localStorage.setItem('type', "Family");
+              window.location = "../../chat.html";
+            }
+        </script>
+  
 
 
     </body>
