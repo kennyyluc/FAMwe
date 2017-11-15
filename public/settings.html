@@ -4,76 +4,115 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Settings</title>
+        <link rel="stylesheet" href="style.css" type="text/css">
+        <title>Your Settings</title>
 
         <style>
 
-        .navbar {
-          height: 50px;
-          width: 50px;
+        html, body {
+            background-color: #fefefe;
+            font-family: Calibri, sans-serif;
+            margin: 0 auto;
+            height: 100%;
         }
+          .icons img {
+            border-radius:50%;
+            width:125px;
+          }
 
-        .navbar img{
-          border-radius: 50%;
-          width:50px;
-          float: left;
-        }
+          .profile img{
+            border-radius: 50%;
+            width:50px;
+          }
 
-        .profile {
+          .navbar {
+            height: 50px;
+            width: 50px;
+          }
+
+          .navbar img{
+            border-radius: 50%;
+            width:50px;
+            float: left;
+
+          }
+
+          .profile {
+              text-align: center;
+              margin-top:-10px;
+              font-family: sans-serif;
+
+          }
+
+
+          .profile .picture{
+            border-radius: 50%;
+            width: 200px;
+          }
+
+          .left{
+            float: left;
+            margin-top: 20px;
+            margin-left: 35px;
+          }
+
+          .right{
+            float: right;
+            margin-top: 20px;
+            margin-right: 35px;
+          }
+
+          .box{
+            position: static;
+            margin-top: -300px;
+            margin-bottom: 11px;
+            border: 150px solid white;
+            box-shadow: 1px 1px 2px #888888;
+          }
+
+          .box2{
+            position: static;
+            width: 225px;
+            margin-left: 50px;
+            background-color: white;
+            border: 25px solid white;
+            margin-bottom: 10px;
+            box-shadow: 1px 1px 2px #888888;
             text-align: center;
-            margin-top:-10px;
-        }
 
-        .profile .button{
-          border-radius: 50%;
-          width: 25px;
-          z-index: 10;
-          margin-top: -85px;
-          margin-left: 50px;
-          position:absolute;
-        }
+          }
 
-        .profile .picture{
-          border-radius: 50%;
-          width: 200px;
-          margin-right: 50px;
-        }
+          .box3{
+            position: static;
+            border: 50px solid white;
+            box-shadow: -1px -1px 2px #888888;
 
-        .profile p{
-          font-family: sans-serif;
-        }
+          }
 
-        .information p{
-          font-family: sans-serif;
-          text-align: center;
-        }
-
-
+          .picture{
+            margin-top: -30px;
+          }
         </style>
     </head>
+    <body style="background-color:#ffb6c1">
+        <div class="navbar">
+            <span></span>
+            <a href="home.html"><img src="resources/BackButton.png" alt="Back"></a>
+        </div>
 
-    <body>
+        <div class="profile">
+            <img class="picture" src="resources/mom.jpg">
+            <br>
+            <span id="userName"></span>
+            <br>
+        </div>
+        <div class="box"></div>
+        <div class="box2">NAME</div>
+        <div class="box2">(626) 652-9883</div>
+        <div class="box2">CHANGE LANGUAGE</div>
+        <div class="box2">REMOVE</div>
 
-      <div class="navbar">
-        <a href="home.html"><img src="resources/BackButton.png" alt="back"></a>
-      </div>
-
-      <div class="profile">
-        <img class="picture" src="resources/mom.jpg">
-        <br>
-          <p>You !</p>
-        </br>
-      </div>
-
-      <div class="information">
-        <br>
-          <p> Name: </p><p>Jessie Wong</p>
-          <p> Birthday: </p><p>01/01/70</p>
-          <p> Logout </p>
-
-        </br>
-      </div>
-
+        <div class="box3"></div>
     </body>
 
 </html>
