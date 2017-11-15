@@ -184,7 +184,8 @@
               C = c[i].split('=');
               cookies[C[0]] = C[1];
             }
-            localStorage.setItem("selLanguage",cookies[name])
+            localStorage.setItem("selLanguage",cookies[name]);
+            console.log(cookies[name]);
             return cookies[name];
 
           }

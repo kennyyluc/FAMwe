@@ -15,7 +15,6 @@
             bottom: 0;
             width: 100%;
         }
-
         .contactToggle button {
             border: none;
             width: 50%;
@@ -27,8 +26,6 @@
             font-weight: 600;
             font-size: 30px;
         }
-
-
         .contacts {
             /*width: 100%;*/
             display: flex;
@@ -36,32 +33,26 @@
             overflow-y: scroll;
             max-height: 500px;
         }
-
         .row {
             padding-bottom: 20px;
         }
-
         .contacts div a img {
             border-radius: 50%;
             width: 125px;
         }
-
         a {
             text-decoration: none;
         }
-
         .item1 {
             float: left;
             margin-left: 35px;
             text-align: center;
         }
-
         .item2 {
             float: right;
             margin-right: 35px;
             text-align: center;
         }
-
         #addBoxBg {
             z-index: 1;
             display: none;
@@ -73,7 +64,6 @@
             background-color: #000;
             background-color: rgba(0, 0, 0, 0.4);
         }
-
         #addBoxContent {
             color: #ee6e73;
             background-color: #fff;
@@ -85,23 +75,19 @@
             transform: translate(-50%, -50%);
             text-align: center;
         }
-
         .addinput {
             font-size: 20px;
             border: 1px solid #E0E0E0;
             padding: 5px;
             margin-bottom: 15px;
         }
-
         .addinput::placeholder {
             color: #D8D8D8;
         }
-
         label {
             font-size: 20px;
             color: #ffb6c1;
         }
-
         #addBoxContent button {
             font-size: 20px;
             background-color: #ffb6c1;
@@ -169,7 +155,6 @@
 
     <script>
         var data = {};
-
         window.onload = function () {
             if (!window.localStorage.getItem('contacts') || window.localStorage.getItem('contacts') === "") {
                 var obj = {
@@ -196,32 +181,26 @@
                 data = JSON.parse(window.localStorage.getItem('contacts'));
                 console.log(data);
             }
-
             createContacts(data.family, 'Family');
             createContacts(data.friends, 'Friends');
-
             googleTranslateElementInit();
         }
-
         function createContacts(obj, type) {
             for (var i = 0; i < obj.length; i++) {
                 if (i == 0) {
                     var newDiv = document.createElement('div');
                     newDiv.innerHTML = '<a href="contactprofile.html" onclick="goToContact(event,\'' + obj[i].name +  '\',\'' + type +'\')"><img src="resources/' + type + '/' + obj[i].img + '" alt="' + type +  '"></a><br><span>' + obj[i].name + '</span>';
                     newDiv.className += " item2";
-
                     document.querySelector('#row1' + type).appendChild(newDiv);
                 }
                 else {
                     var row = document.createElement('div');
                     row.className = "row";
-
                     var htmlString = '<div class="item1"><a href="contactprofile.html" onclick="goToContact(event,\'' + obj[i].name +  '\',\'' + type +'\')"><img src="resources/' + type + '/' + obj[i].img + '" alt="' + type +  '"></a><br><span>' + obj[i].name + '</span></div>';
                     i++;
                     if (i < obj.length) {
                         htmlString += '<div class="item2"><a href="contactprofile.html"onclick="goToContact(event,\'' + obj[i].name + '\',\'' + type +'\')"><img src="resources/' + type + '/' + obj[i].img + '" alt="' + type +  '"></a><br><span>' + obj[i].name + '</span></div>';
                     }
-
                     row.innerHTML = htmlString;
                     console.log(row)
                     /*row.querySelector('.item1').querySelector('a').onclick = function(event) {
@@ -229,7 +208,6 @@
                         console.log(obj[i-1].name);
                         goToContact(event, obj[i-1].name);
                     }
-
                     if (i < obj.length) {
                         row.querySelector('.item2').querySelector('a').onclick = function(event) {
                             goToContact(event, obj[i].name);
@@ -242,7 +220,6 @@
                 }
             }
         }
-
         function goToContact(event, chosenUser, chosenType) {
             event.preventDefault();
             window.localStorage.setItem('chosen', chosenUser);
@@ -251,25 +228,20 @@
             console.log(window.localStorage.getItem('chosenType'));
             window.location = 'contactprofile.html';
         }
-
         function toggleFamily() {
             document.querySelector('#family').style.display = "flex";
             document.querySelector('#friends').style.display = "none";
             document.querySelector('#family').scrollTop = 0;
-
             document.querySelector('#familyButton').style = "background-color:#ffb6c1; color: white";
             document.querySelector('#friendButton').style = "background-color:#fff8e7; color: #ffb6c1";
         }
-
         function toggleFriends() {
             document.querySelector('#friends').style.display = "flex";
             document.querySelector('#family').style.display = "none";
             document.querySelector('#friends').scrollTop = 0;
-
             document.querySelector('#familyButton').style = "background-color:#fff8e7; color: #ffb6c1";
             document.querySelector('#friendButton').style = "background-color:#ffb6c1; color: white";
         }
-
         function addContact() {
             var name = document.querySelector('#name').value;
             var number = document.querySelector('#number').value;
@@ -286,28 +258,22 @@
                 window.localStorage.setItem('contacts', JSON.stringify(data));
                 console.log(window.localStorage.getItem('contacts'));
             }
-
             else if (type === "friend") {
                 data.friends.push(newObj);
                 window.localStorage.setItem('contacts', JSON.stringify(data));
                 console.log(window.localStorage.getItem('contacts'));
             }
-
             window.location.reload();
-
         }
-
         function closeBox() {
             document.querySelector('#name').value = "";
             document.querySelector('#number').value = "";
             document.querySelector('input[checked]').value = "family";
             document.querySelector('#addBoxBg').style.display = "none";
         }
-
         function openAddBox() {
             document.querySelector('#addBoxBg').style.display = "block";
         }
-
         function googleTranslateElementInit() {
             var selLang = localStorage.getItem("selLanguage");
             selLang = 'ar';
@@ -320,7 +286,6 @@
                 new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
             }
         }
-
     </script>
     <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
