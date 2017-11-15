@@ -1,13 +1,181 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Contact Settings</title>
-    </head>
-    <body>
-        <a href="contactprofile.html">Back</a>
-    </body>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="style.css" type="text/css">
+    <title>Friend's Profile</title>
+
+    <style>
+        .icons img {
+            border-radius: 50%;
+            width: 125px;
+        }
+
+        .profile img {
+            border-radius: 50%;
+            width: 50px;
+        }
+
+        .navbar {
+            height: 50px;
+            width: 50px;
+        }
+
+        .navbar img {
+            border-radius: 50%;
+            width: 50px;
+            float: left;
+
+        }
+
+        .profile {
+            text-align: center;
+            margin-top: -10px;
+            font-family: sans-serif;
+
+        }
+
+
+        .profile .picture {
+            border-radius: 50%;
+            width: 200px;
+        }
+
+        .left {
+            float: left;
+            margin-top: 20px;
+            margin-left: 35px;
+        }
+
+        .right {
+            float: right;
+            margin-top: 20px;
+            margin-right: 35px;
+        }
+
+        #removeBoxBg {
+            z-index: 1;
+            display: none;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            position: fixed;
+            background-color: #000;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        #removeBoxContent {
+            color: #ee6e73;
+            background-color: #fff;
+            width: 75%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            border-radius: 15px;
+        }
+
+        #removeBoxContent button {
+            font-size: 20px;
+            background-color: #ffb6c1;
+            border: none;
+            color: #fff;
+            padding: 10px;
+            width: 50%;
+            height: 55px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar">
+        <span></span>
+        <a href="home.html">
+            <img src="resources/BackButton.png" alt="Back">
+        </a>
+    </div>
+
+    <div class="profile">
+        <img class="picture" src="">
+        <br>
+        <span id="userName"></span>
+        <br>
+    </div>
+
+    <div>
+        <div onclick="openRemoveBox()">Remove</div>
+    </div>
+
+    <div id="removeBoxBg">
+        <div id="removeBoxContent">
+            <div style="padding:15px">
+                <img src="/resources/Cancel.png" style="float:left; border-radius:50%" width="30px" alt="X" onclick="closeBox()">
+                <p id="removeText" style="margin-top:40px; text-align:center; font-size:30px; color:#ffb6c1"></p>
+            </div>
+            <button style="float:left; border-radius:0 0 0 15px" onclick="closeBox()">No</button>
+            <button style="border-left:1px solid #fff; border-radius:0 0 15px 0" onclick="removeContact()">Yes</button>
+        </div>
+    </div>
+
+    <script>
+        var data = {};
+        var type = window.localStorage.getItem('chosenType');
+        console.log(type);
+
+        var user = window.localStorage.getItem('chosen');
+        console.log(user);
+
+
+        window.onload = function () {
+            data = JSON.parse(window.localStorage.getItem('contacts'));
+            document.querySelector('#userName').textContent = user;
+            if (type === 'Family') {
+                for (var i = 0; i < data.family.length; i++) {
+                    if (data.family[i].name === user) {
+                        document.querySelector('.picture').setAttribute('src', 'resources/Family/' + data.family[i].img);
+                        ft = data.family[i].num;
+                        break;
+                    }
+                }
+            }
+            else if (type === 'Friends') {
+                for (var i = 0; i < data.friends.length; i++) {
+                    if (data.friends[i].name === user) {
+                        document.querySelector('.picture').setAttribute('src', 'resources/Friends/' + data.friends[i].img);
+                        ft = data.friends[i].num;
+                        break;
+                    }
+                }
+            }
+
+            document.querySelector('#removeText').textContent = 'Remove ' + user + '?';
+        }
+
+        function removeContact() {
+            if (type === 'Family') {
+                
+            }
+            else if (type === 'Friends') {
+
+            }
+        }
+
+        function closeBox() {
+            document.querySelector('#removeBoxBg').style.display = "none";
+        }
+
+        function openRemoveBox() {
+            document.querySelector('#removeBoxBg').style.display = "block";
+        }
+    </script>
+
+
+
+</body>
 
 </html>
