@@ -9,6 +9,45 @@
     <title>Friend's Profile</title>
 
     <style>
+        html,
+        body {
+            background-color: #fefefe;
+            font-family: Calibri, sans-serif;
+            margin: 0 auto;
+            height: 100%;
+        }
+
+        .box {
+            position: static;
+            margin-top: -300px;
+            margin-bottom: 11px;
+            border: 150px solid white;
+            box-shadow: 1px 1px 2px #888888;
+        }
+
+        .box2 {
+            position: static;
+            width: 225px;
+            margin-left: 50px;
+            background-color: white;
+            border: 25px solid white;
+            margin-bottom: 10px;
+            box-shadow: 1px 1px 2px #888888;
+            text-align: center;
+
+        }
+
+        .box3 {
+            position: static;
+            border: 50px solid white;
+            box-shadow: -1px -1px 2px #888888;
+
+        }
+
+        .picture {
+            margin-top: -30px;
+        }
+
         .icons img {
             border-radius: 50%;
             width: 125px;
@@ -92,7 +131,7 @@
     </style>
 </head>
 
-<body>
+<body style="background-color:#ffb6c1">
     <div class="navbar">
         <span></span>
         <a href="home.html">
@@ -103,13 +142,15 @@
     <div class="profile">
         <img class="picture" src="">
         <br>
-        <span id="userName"></span>
-        <br>
     </div>
 
-    <div>
-        <div onclick="openRemoveBox()">Remove</div>
-    </div>
+    <div class="box"></div>
+    <div id="userName" class="box2">NAME</div>
+    <div class="box2">(626) 652-9883</div>
+    <div class="box2">FRIEND</div>
+    <div class="box2" onclick="openRemoveBox()">REMOVE</div>
+
+    <div class="box3"></div>
 
     <div id="removeBoxBg">
         <div id="removeBoxContent">
@@ -158,7 +199,7 @@
 
         function removeContact() {
             if (type === 'Family') {
-                
+
             }
             else if (type === 'Friends') {
 
@@ -173,9 +214,6 @@
             document.querySelector('#removeBoxBg').style.display = "block";
         }
     </script>
-
-
-
 </body>
 
 </html>
