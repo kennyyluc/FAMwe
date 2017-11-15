@@ -199,6 +199,8 @@
 
             createContacts(data.family, 'Family');
             createContacts(data.friends, 'Friends');
+
+            googleTranslateElementInit();
         }
 
         function createContacts(obj, type) {
@@ -207,7 +209,7 @@
                     var newDiv = document.createElement('div');
                     newDiv.innerHTML = '<a href="contactprofile.html" onclick="goToContact(event,\'' + obj[i].name +  '\',\'' + type +'\')"><img src="resources/' + type + '/' + obj[i].img + '" alt="' + type +  '"></a><br><span>' + obj[i].name + '</span>';
                     newDiv.className += " item2";
-                    
+
                     document.querySelector('#row1' + type).appendChild(newDiv);
                 }
                 else {
@@ -219,7 +221,7 @@
                     if (i < obj.length) {
                         htmlString += '<div class="item2"><a href="contactprofile.html"onclick="goToContact(event,\'' + obj[i].name + '\',\'' + type +'\')"><img src="resources/' + type + '/' + obj[i].img + '" alt="' + type +  '"></a><br><span>' + obj[i].name + '</span></div>';
                     }
-                  
+
                     row.innerHTML = htmlString;
                     console.log(row)
                     /*row.querySelector('.item1').querySelector('a').onclick = function(event) {
@@ -227,13 +229,13 @@
                         console.log(obj[i-1].name);
                         goToContact(event, obj[i-1].name);
                     }
-                    
+
                     if (i < obj.length) {
                         row.querySelector('.item2').querySelector('a').onclick = function(event) {
                             goToContact(event, obj[i].name);
                         }
                     }*/
-                    if (type === "Family") 
+                    if (type === "Family")
                         document.querySelector('#family').appendChild(row);
                     else if (type === "Friends")
                         document.querySelector('#friends').appendChild(row);
@@ -284,7 +286,7 @@
                 window.localStorage.setItem('contacts', JSON.stringify(data));
                 console.log(window.localStorage.getItem('contacts'));
             }
-    
+
             else if (type === "friend") {
                 data.friends.push(newObj);
                 window.localStorage.setItem('contacts', JSON.stringify(data));
@@ -306,9 +308,22 @@
             document.querySelector('#addBoxBg').style.display = "block";
         }
 
-
+        function googleTranslateElementInit() {
+            var selLang = localStorage.getItem("selLanguage");
+            selLang = 'ar';
+            if(selLang !== null && selLang)
+            {
+                new google.translate.TranslateElement({pageLanguage: selLang}, 'google_translate_element');
+            }
+            else
+            {
+                new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+            }
+        }
 
     </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
 </body>
 
 </html>
