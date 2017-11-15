@@ -97,6 +97,8 @@
             margin-top: 20px;
             padding: 5px 10px;
         }
+        .goog-te-banner-frame.skiptranslate {display: none !important;} 
+        body { top: 0px !important; }
     </style>
 </head>
 
@@ -203,16 +205,7 @@
                     }
                     row.innerHTML = htmlString;
                     console.log(row)
-                    /*row.querySelector('.item1').querySelector('a').onclick = function(event) {
-                        console.log('hi');
-                        console.log(obj[i-1].name);
-                        goToContact(event, obj[i-1].name);
-                    }
-                    if (i < obj.length) {
-                        row.querySelector('.item2').querySelector('a').onclick = function(event) {
-                            goToContact(event, obj[i].name);
-                        }
-                    }*/
+
                     if (type === "Family")
                         document.querySelector('#family').appendChild(row);
                     else if (type === "Friends")
