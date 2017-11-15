@@ -4,10 +4,150 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Calendar</title>
+        <link rel="stylesheet" href="style.css" type="text/css">
+        <title>Your Settings</title>
+
+        <style>
+
+        html, body {
+            background-color: #fefefe;
+            font-family: Calibri, sans-serif;
+            margin: 0 auto;
+            height: 100%;
+        }
+          .icons img {
+            border-radius:50%;
+            width:125px;
+          }
+
+          .profile img{
+            border-radius: 50%;
+            width:50px;
+          }
+
+          .navbar {
+            height: 50px;
+            width: 50px;
+          }
+
+          .navbar img{
+            border-radius: 50%;
+            width:50px;
+            float: left;
+
+          }
+
+          .profile {
+              text-align: center;
+              margin-top:-10px;
+              font-family: sans-serif;
+
+          }
+
+
+          .profile .picture{
+            border-radius: 50%;
+            width: 200px;
+          }
+
+          .left{
+            float: left;
+            margin-top: 20px;
+            margin-left: 35px;
+          }
+
+          .right{
+            float: right;
+            margin-top: 20px;
+            margin-right: 35px;
+          }
+
+          .box{
+            position: static;
+            margin-top: -300px;
+            margin-bottom: 30px;
+            border: 150px solid white;
+          }
+
+          .box2{
+            position: static;
+            width: 275px;
+            margin-left: 25px;
+            background-color: white;
+            border: 25px solid white;
+            margin-bottom: 10px;
+            text-align: center;
+            border-radius: 10px;
+          }
+
+          .box2 img{
+            width: 50px;
+            border-radius: 50%;
+          }
+
+
+          .box3{
+            position: static;
+          }
+
+          .picture{
+            margin-top: -30px;
+          }
+
+        </style>
     </head>
-    <body>
-        <a href="contactprofile.html">Back</a>
+    <body style="background-color:#ffb6c1">
+        <div class="navbar">
+            <span></span>
+            <a href="home.html"><img src="resources/BackButton.png" alt="Back"></a>
+        </div>
+
+        <div class="profile">
+            <h1>NAME'S EVENTS</h1>
+            <br>
+            <span id="userName"></span>
+            <br>
+        </div>
+        <div class="box"></div>
+        <div class="box2">
+          NOV 11, 2017 - Birthday Party
+          <br>
+          11:00AM - 5:00PM
+        </div>
+        <div class="box2">
+          DEC 12, 2017 - Birthday Shower
+          <br>
+          12:00PM - 8:00PM
+        </div>
+        <div class="box2"><img src="resources/AddButton.png"</div>
+
+        <script type="text/javascript">
+        function googleTranslateElementInit() {
+          new google.translate.TranslateElement({pageLanguage: 'en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
+        }
+
+        function readCookie(name) {
+            var c = document.cookie.split('; '),
+            cookies = {}, i, C;
+
+            for (i = c.length - 1; i >= 0; i--) {
+              C = c[i].split('=');
+              cookies[C[0]] = C[1];
+            }
+            localStorage.setItem("selLanguage",cookies[name])
+            return cookies[name];
+
+          }
+
+          console.log(readCookie('googtrans'));
+
+
+        </script>
+
+        <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+
     </body>
+
 
 </html>
