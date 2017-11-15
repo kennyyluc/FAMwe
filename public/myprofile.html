@@ -10,5 +10,24 @@
         <a href="home.html">To Contacts</a>
         <a href="mycalendar.html">My Calendar</a>
     </body>
+    <script>
+    window.onload = function () {
+      googleTranslateElementInit();
+    }
+    function googleTranslateElementInit() {
+        var selLang = localStorage.getItem("selLanguage");
+        selLang = 'ar';
+        if(selLang !== null && selLang)
+        {
+            new google.translate.TranslateElement({pageLanguage: selLang}, 'google_translate_element');
+        }
+        else
+        {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    }
+
+</script>
+<script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 
 </html>

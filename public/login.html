@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -130,20 +131,25 @@
       </div>
 
       <button id="submit">LOGIN</button>
-      <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 
-                  <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
-                  <script>
-                    // Initialize Firebase
-                    var config = {
-                      apiKey: "AIzaSyBX1xwmxS-eZ8wpTajDxGavuJ6Nqast_bg",
-                      authDomain: "famwe-b672b.firebaseapp.com",
-                      databaseURL: "https://famwe-b672b.firebaseio.com",
-                      projectId: "famwe-b672b",
-                      storageBucket: "famwe-b672b.appspot.com",
-                      messagingSenderId: "232395217561"
-                    };
-                    firebase.initializeApp(config);
+      <script>
+      window.onload = function () {
+        googleTranslateElementInit();
+      }
+      </script>
+      <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+      <script src="https://www.gstatic.com/firebasejs/4.6.0/firebase.js"></script>
+      <script>
+        // Initialize Firebase
+        var config = {
+          apiKey: "AIzaSyBX1xwmxS-eZ8wpTajDxGavuJ6Nqast_bg",
+          authDomain: "famwe-b672b.firebaseapp.com",
+          databaseURL: "https://famwe-b672b.firebaseio.com",
+          projectId: "famwe-b672b",
+          storageBucket: "famwe-b672b.appspot.com",
+          messagingSenderId: "232395217561"
+        };
+        firebase.initializeApp(config);
 
       $(document).ready(function() {
 
@@ -174,6 +180,22 @@
 
         });
     });
+
+    function googleTranslateElementInit() {
+        var selLang = localStorage.getItem("selLanguage");
+        selLang = 'ar';
+        if(selLang !== null && selLang)
+        {
+            new google.translate.TranslateElement({pageLanguage: selLang}, 'google_translate_element');
+        }
+        else
+        {
+            new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+        }
+    }
+
     </script>
+    <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
     </body>
 </html>
