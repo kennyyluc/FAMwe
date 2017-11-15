@@ -22,7 +22,6 @@
             margin-top: -300px;
             margin-bottom: 11px;
             border: 150px solid white;
-            box-shadow: 1px 1px 2px #888888;
         }
 
         .box2 {
@@ -32,16 +31,13 @@
             background-color: white;
             border: 25px solid white;
             margin-bottom: 10px;
-            box-shadow: 1px 1px 2px #888888;
             text-align: center;
-
+            border-radius: 10px;
         }
 
         .box3 {
             position: static;
             border: 50px solid white;
-            box-shadow: -1px -1px 2px #888888;
-
         }
 
         .picture {
@@ -74,7 +70,7 @@
             text-align: center;
             margin-top: -10px;
             font-family: sans-serif;
-
+            margin-bottom: 20px;
         }
 
 
@@ -134,7 +130,7 @@
 <body style="background-color:#ffb6c1">
     <div class="navbar">
         <span></span>
-        <a href="home.html">
+        <a href="contactprofile.html">
             <img src="resources/BackButton.png" alt="Back">
         </a>
     </div>
@@ -145,10 +141,10 @@
     </div>
 
     <div class="box"></div>
-    <div id="userName" class="box2">NAME</div>
+    <div id="userName" class="box2" style="margin-top:20px">NAME</div>
     <div class="box2">(626) 652-9883</div>
     <div class="box2">FRIEND</div>
-    <div class="box2" onclick="openRemoveBox()">REMOVE</div>
+    <div class="box2" style="margin-bottom:20px" onclick="openRemoveBox()">REMOVE</div>
 
     <div class="box3"></div>
 
@@ -174,12 +170,11 @@
 
         window.onload = function () {
             data = JSON.parse(window.localStorage.getItem('contacts'));
-            document.querySelector('#userName').textContent = user;
+            document.querySelector('#userName').textContent = user.toUpperCase();
             if (type === 'Family') {
                 for (var i = 0; i < data.family.length; i++) {
                     if (data.family[i].name === user) {
                         document.querySelector('.picture').setAttribute('src', 'resources/Family/' + data.family[i].img);
-                        ft = data.family[i].num;
                         break;
                     }
                 }
@@ -188,7 +183,6 @@
                 for (var i = 0; i < data.friends.length; i++) {
                     if (data.friends[i].name === user) {
                         document.querySelector('.picture').setAttribute('src', 'resources/Friends/' + data.friends[i].img);
-                        ft = data.friends[i].num;
                         break;
                     }
                 }
@@ -199,11 +193,28 @@
 
         function removeContact() {
             if (type === 'Family') {
-
+                for (var i = 0; i < data.family.length; i++) {
+                    if (data.family[i].name === user) {
+                        data.family.splice(i, 1);
+                        break;
+                    }
+                }
+                console.log(data);
+                window.localStorage.setItem('contacts', JSON.stringify(data));
             }
             else if (type === 'Friends') {
-
+                for (var i = 0; i < data.friends.length; i++) {
+                    if (data.friends[i].name === user) {
+                        data.friends.splice(i, 1);
+                        break;
+                    }
+                }
+                console.log(data);
+                window.localStorage.setItem('contacts', JSON.stringify(data));
             }
+            closeBox();
+            window.location = 'home.html';
+
         }
 
         function closeBox() {
