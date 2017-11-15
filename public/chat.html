@@ -62,7 +62,7 @@
     <div class="chatContainer">
         <div class="navbar">
             <span></span>
-            <a href="" onclick="goToContact(event)">
+            <a href="contactprofile.html">
                 <img src="resources/BackButton.png" alt="Back">
             </a>
         </div>
@@ -222,7 +222,7 @@
                 var history = JSON.parse(window.localStorage.getItem('msgHistory'));
                 for (var i = 0; i < history.users.length; i++) {
                     console.log('looping');
-                    if (history.users[i].name === window.localStorage.getItem('chosenUser')) {
+                    if (history.users[i].name === window.localStorage.getItem('chosen')) {
                         console.log(history.users[i].msgs);
                         history.users[i].msgs.push(document.querySelector('#message').value);
                         break;
@@ -270,7 +270,7 @@
                 if (count == history.users.length) {
                     console.log("here");
                     var newUser = {
-                        "name": window.localStorage.getItem('chosenUser'),
+                        "name": window.localStorage.getItem('chosen'),
                         "msgs": []
                     }
                     history.users.push(newUser);
@@ -292,7 +292,7 @@
                 var hstObj = {
                     "users": [
                         {
-                            "name": window.localStorage.getItem('chosenUser'),
+                            "name": window.localStorage.getItem('chosen'),
                             "msgs": []
                         }
                     ]
@@ -302,10 +302,6 @@
             console.log('made it');
         }
 
-        function goToContact(event) {
-            event.preventDefault();
-            window.location = "/resources/" + window.localStorage.getItem('type') + "/" + window.localStorage.getItem('chosenUser') + ".html";
-        }
         window.onload = function () {
             try {
                 window.localStorage.setItem('recording', false);
@@ -314,7 +310,7 @@
                 //navigator.mediaDevices.getUserMedia;
                 navigator.getUserMedia = navigator.getUserMedia || navigator.webkitGetUserMedia
                 window.URL = window.URL || window.webkitURL;
-                var user = window.localStorage.getItem('chosenUser');
+                var user = window.localStorage.getItem('chosen');
                 console.log(user);
                 populateChat(user);
             }
