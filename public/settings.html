@@ -65,9 +65,8 @@
           .box{
             position: static;
             margin-top: -300px;
-            margin-bottom: 11px;
+            margin-bottom: 30px;
             border: 150px solid white;
-            box-shadow: 1px 1px 2px #888888;
           }
 
           .box2{
@@ -77,8 +76,8 @@
             background-color: white;
             border: 25px solid white;
             margin-bottom: 10px;
-            box-shadow: 1px 1px 2px #888888;
             text-align: center;
+            border-radius: 10px;
           }
 
           .box2 img{
@@ -89,12 +88,45 @@
 
           .box3{
             position: static;
-            box-shadow: -1px -1px 2px #888888;
           }
 
           .picture{
             margin-top: -30px;
           }
+
+          #logoutBoxBg {
+            z-index: 1;
+            display: none;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            position: fixed;
+            background-color: #000;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        #logoutBoxContent {
+            color: #ee6e73;
+            background-color: #fff;
+            width: 75%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            border-radius: 15px;
+        }
+
+        #logoutBoxContent button {
+            font-size: 20px;
+            background-color: #ffb6c1;
+            border: none;
+            color: #fff;
+            padding: 10px;
+            width: 50%;
+            height: 55px;
+        }
         </style>
     </head>
     <body style="background-color:#ffb6c1">
@@ -110,10 +142,35 @@
             <br>
         </div>
         <div class="box"></div>
-        <div class="box2">NAME</div>
+        <div class="box2">SOPHIA HOANG</div>
         <div class="box2">(626) 652-9883</div>
         <div class="box2">CHANGE LANGUAGE</div>
-        <div class="box2"><img style="vertical-align:middle" src="resources/logout.png">  LOGOUT</div>
+        <div class="box2" onclick="openLogoutBox()"><img style="vertical-align:middle" src="resources/logout.png">  LOGOUT</div>
+
+        <div id="logoutBoxBg">
+            <div id="logoutBoxContent">
+                <div style="padding:15px">
+                    <img src="/resources/Cancel.png" style="float:left; border-radius:50%" width="30px" alt="X" onclick="closeBox()">
+                    <p style="margin-top:40px; text-align:center; font-size:30px; color:#ffb6c1">Are you sure?</p>
+                </div>
+                <button style="float:left; border-radius:0 0 0 15px" onclick="closeBox()">No</button>
+                <button style="border-left:1px solid #fff; border-radius:0 0 15px 0" onclick="goToLogin()">Yes</button>
+            </div>
+        </div>
+        <script>
+          function closeBox() {
+            document.querySelector('#logoutBoxBg').style.display = "none";
+        }
+
+        function openLogoutBox() {
+            document.querySelector('#logoutBoxBg').style.display = "block";
+        }
+
+        function goToLogin() {
+           window.location = 'login.html';
+        }
+        </script>
     </body>
+
 
 </html>
