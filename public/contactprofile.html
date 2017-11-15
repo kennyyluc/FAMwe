@@ -76,7 +76,7 @@
           <div class="left">
             <a href="call.html"><img src="resources/PhoneButton.png" alt="Phone"></a>
             <br>
-            <a href="facetime.html"><img style="margin-top:20px;" src="resources/VideoCallButton.png" alt="FaceTime"></a>
+            <a id="facetime"><img style="margin-top:20px;" src="resources/VideoCallButton.png" alt="FaceTime"></a>
           </div>
           <div class="right">
               <a href="chat.html"><img src="resources/TextButton.png" alt="Chat"></a>
@@ -93,6 +93,8 @@
             var user = window.localStorage.getItem('chosen');
             console.log(user);
 
+            var ft;
+
             window.onload = function() {
               data = JSON.parse(window.localStorage.getItem('contacts'));
               document.querySelector('#userName').textContent = user;
@@ -100,6 +102,7 @@
                 for(var i = 0; i < data.family.length; i++) {
                   if (data.family[i].name === user) {
                     document.querySelector('.picture').setAttribute('src', 'resources/Family/' + data.family[i].img);
+                    ft = data.family[i].num;
                     break;
                   }
                 }
@@ -108,6 +111,7 @@
                 for(var i = 0; i < data.friends.length; i++) {
                   if (data.friends[i].name === user) {
                     document.querySelector('.picture').setAttribute('src', 'resources/Friends/' + data.friends[i].img);
+                    ft = data.friends[i].num;
                     break;
                   }
                 }
@@ -116,6 +120,8 @@
               settingsBtn.setAttribute('href', 'contactsettings.html');
               settingsBtn.innerHTML = '<img src="resources/Settings.png" alt="Edit Profile" style="border-radius: 50%;width: 50px;z-index: 10;margin-top: -85px; margin-left: 50px;position:absolute;"></a>';
               document.querySelector('.profile').appendChild(settingsBtn);
+              console.log(ft);
+              document.querySelector('#facetime').setAttribute('href', 'facetime://' + ft);
             }
 
         </script>
