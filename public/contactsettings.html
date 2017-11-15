@@ -91,7 +91,7 @@
             margin-right: 35px;
         }
 
-        #removeBoxBg {
+        .boxBg {
             z-index: 1;
             display: none;
             width: 100%;
@@ -103,7 +103,7 @@
             background-color: rgba(0, 0, 0, 0.4);
         }
 
-        #removeBoxContent {
+        .boxContent {
             color: #ee6e73;
             background-color: #fff;
             width: 75%;
@@ -115,7 +115,7 @@
             border-radius: 15px;
         }
 
-        #removeBoxContent button {
+        .boxContent button {
             font-size: 20px;
             background-color: #ffb6c1;
             border: none;
@@ -141,21 +141,38 @@
     </div>
 
     <div class="box"></div>
-    <div id="userName" class="box2" style="margin-top:20px">NAME</div>
+    <div id="userName" class="box2" style="margin-top:45px">NAME</div>
     <div class="box2">(626) 652-9883</div>
-    <div class="box2">FRIEND</div>
-    <div class="box2" style="margin-bottom:20px" onclick="openRemoveBox()">REMOVE</div>
+    <div class="box2" onclick="openTypeBox()">
+        <img style="vertical-align:middle; width:30px; border-radius:50%; margin-right:10px" src="resources/Edit.png" alt="Edit"><span id="userType"></span></div>
+    <div class="box2" style="margin-bottom:20px" onclick="openRemoveBox()">
+        <img style="vertical-align:middle; width:30px; border-radius:50%; margin-right:10px" src="resources/Delete.png" alt="">REMOVE</div>
 
-    <div class="box3"></div>
-
-    <div id="removeBoxBg">
-        <div id="removeBoxContent">
+    <div class="boxBg" id="removeBoxBg">
+        <div class="boxContent">
             <div style="padding:15px">
                 <img src="/resources/Cancel.png" style="float:left; border-radius:50%" width="30px" alt="X" onclick="closeBox()">
                 <p id="removeText" style="margin-top:40px; text-align:center; font-size:30px; color:#ffb6c1"></p>
             </div>
             <button style="float:left; border-radius:0 0 0 15px" onclick="closeBox()">No</button>
             <button style="border-left:1px solid #fff; border-radius:0 0 15px 0" onclick="removeContact()">Yes</button>
+        </div>
+    </div>
+
+    <div class="boxBg" id="typeBoxBg">
+        <div class="boxContent" style="padding:15px; width:50%">
+            <div style="width:100%; display:inline-block">
+                <img src="/resources/Cancel.png" style="float:left; border-radius:50%" width="30px" alt="X" onclick="closeTypeBox()">
+            </div>
+
+            <input type="radio" name="contactType" value="family">
+            <label style="font-size:24px">Family</label>
+            <br>
+            <input type="radio" name="contactType" value="friend">
+            <label style="font-size:24px">Friend</label>
+            <br>
+
+            <button style="margin-top:20px; height:40px; font-size:16px" onclick="changeType()">Change</button>
         </div>
     </div>
 
@@ -189,6 +206,18 @@
             }
 
             document.querySelector('#removeText').textContent = 'Remove ' + user + '?';
+            if (type === 'Family') {
+                document.querySelector('input[value="family"]').setAttribute('checked', true);
+                document.querySelector('#userType').textContent = 'FAMILY';
+            }
+
+            else if (type === 'Friends') {
+                document.querySelector('input[value="friend"]').setAttribute('checked', true);
+                document.querySelector('#userType').textContent = 'FRIEND';
+            }
+
+            
+
         }
 
         function removeContact() {
@@ -223,6 +252,62 @@
 
         function openRemoveBox() {
             document.querySelector('#removeBoxBg').style.display = "block";
+        }
+
+
+        function closeTypeBox() {
+            document.querySelector('#typeBoxBg').style.display = "none";
+        }
+
+        function openTypeBox() {
+            document.querySelector('#typeBoxBg').style.display = "block";
+        }
+
+        function changeType() {
+            var newType = document.querySelector('input[name="contactType"]:checked').value;
+            var objMove = {};
+
+            if ( (type === 'Family' && newType === 'friend') || (type === 'Friends' && newType === 'family')) {
+                if (type === 'Family') {
+                    for (var i = 0; i < data.family.length; i++) {
+                        if (data.family[i].name === user) {
+                            objMove = data.family[i];
+                            data.family.splice(i, 1);
+                            console.log(objMove);
+                            break;
+                        }
+                    }
+
+                    data.friends.push(objMove);
+                    document.querySelector('#userType').textContent = 'FRIEND';
+                    window.localStorage.setItem('chosenType', 'Friends');
+                    type = 'Friends';
+                }
+
+                else if (type === 'Friends') {
+                    for (var i = 0; i < data.friends.length; i++) {
+                        if (data.friends[i].name === user) {
+                            objMove = data.friends[i];
+                            console.log(objMove);
+                            data.friends.splice(i, 1);
+                            break;
+                        }
+                    }
+
+                    data.family.push(objMove);
+                    document.querySelector('#userType').textContent = 'FAMILY';
+                    window.localStorage.setItem('chosenType', 'Family');
+                    type = 'Family';
+                }
+                
+                window.localStorage.setItem('contacts', JSON.stringify(data));
+                data = window.localStorage.getItem('contacts');
+                console.log(data);
+                //window.localStorage.setItem('chosenType', 'Friends');
+                
+
+            }
+            closeTypeBox();
         }
     </script>
 </body>

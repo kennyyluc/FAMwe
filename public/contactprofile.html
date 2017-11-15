@@ -87,21 +87,21 @@
 
         <script>
             var data = {};
-            var type = window.localStorage.getItem('chosenType');
-            console.log(type);
-
-            var user = window.localStorage.getItem('chosen');
-            console.log(user);
-
+            var type;
+            var user;
             var ft;
 
             window.onload = function() {
               data = JSON.parse(window.localStorage.getItem('contacts'));
+              type = window.localStorage.getItem('chosenType');
+              user = window.localStorage.getItem('chosen');
               document.querySelector('#userName').textContent = user;
               if (type === 'Family') {
                 for(var i = 0; i < data.family.length; i++) {
                   if (data.family[i].name === user) {
+                    console.log('looping');
                     document.querySelector('.picture').setAttribute('src', 'resources/Family/' + data.family[i].img);
+                    console.log(data.family[i].img);
                     ft = data.family[i].num;
                     break;
                   }
@@ -109,8 +109,10 @@
               }
               else if (type === 'Friends') {
                 for(var i = 0; i < data.friends.length; i++) {
+                  console.log('looping');
                   if (data.friends[i].name === user) {
                     document.querySelector('.picture').setAttribute('src', 'resources/Friends/' + data.friends[i].img);
+                    console.log(data.friends[i].img);
                     ft = data.friends[i].num;
                     break;
                   }
