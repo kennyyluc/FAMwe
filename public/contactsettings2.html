@@ -139,29 +139,40 @@
     </style>
 </head>
 
-<body style="background-color:#ffb6c1">
+<body>
     <div class="navbar">
         <span></span>
         <a href="contactprofile.html">
             <img src="resources/BackButton.png" alt="Back">
         </a>
     </div>
+
     <!-- start -->
     <div class="profile">
         <img class="picture" src="">
         <br>
+        <div id="userName" style="font-size:24px; margin-top:10px; letter-spacing:1px">NAME</div>
+        <div style="margin-top:5px; letter-spacing:1px">(626) 652-9883</div>
     </div>
 
-    <div class="box"></div>
-    <div id="userName" class="box2" style="margin-top:45px">NAME</div>
-    <div class="box2">(626) 652-9883</div>
+    <div style="background-color:#ffb6c1; text-align:center; height:100%; padding-top:30px">
+        <div style="background-color:white; width: 225px; border-radius: 10px; margin:0 auto; padding:20px; margin-bottom: 20px" onclick="openTypeBox()">
+            <img style="vertical-align:middle; width:30px; border-radius:50%; margin-right:10px" src="resources/Edit.png" alt="Edit"><span id="userType"></span>
+        </div>
+        <div style="background-color:white; width:225px; border-radius: 10px; margin:0 auto; padding:20px">
+            <img style="vertical-align:middle; width:30px; border-radius:50%; margin-right:10px" src="resources/Delete.png" alt="">
+            REMOVE
+        </div>
+
+    </div>
+    <!-- end -->
+    <!--<div class="box"></div>
+    
     <div class="box2" onclick="openTypeBox()">
         <img style="vertical-align:middle; width:30px; border-radius:50%; margin-right:10px" src="resources/Edit.png" alt="Edit"><span id="userType"></span></div>
     <div class="box2" style="margin-bottom:20px" onclick="openRemoveBox()">
         <img style="vertical-align:middle; width:30px; border-radius:50%; margin-right:10px" src="resources/Delete.png" alt="">REMOVE</div>
-
-    <!-- end -->
-
+    -->
     <div class="boxBg" id="removeBoxBg">
         <div class="boxContent">
             <div style="padding:15px">
